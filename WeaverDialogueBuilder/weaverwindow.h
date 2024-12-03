@@ -16,8 +16,10 @@ class WeaverWindow : public QMainWindow
 public:
     WeaverWindow(QWidget *parent = nullptr);
     ~WeaverWindow();
-
 private:
     Ui::WeaverWindow *ui;
+    QVector<QString> dialogueList;
+private:
+    void on_saveDialogue_clicked();
 };
 #endif // WEAVERWINDOW_H
