@@ -6,23 +6,74 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>503</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>WeaverWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>50</y>
+      <width>341</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="dialogueTitle">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Dialogue</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="dialogueFirst"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="dialogueSecond"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="dialogueThird"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnSavingDialogue">
+       <property name="text">
+        <string>Save Dialogue</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>21</height>
+     <width>503</width>
+     <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuWeaver">
+    <property name="title">
+     <string>Weaver</string>
+    </property>
+   </widget>
+   <addaction name="menuWeaver"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
