@@ -2,6 +2,7 @@
 #define WEAVERWINDOW_H
 
 #include <QMainWindow>
+#include <fileio.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,6 +20,7 @@ public:
 private:
     Ui::WeaverWindow *ui;
     QVector<QString> dialogueList;
+    FileIO fileio;
 private:
     void on_saveDialogue_clicked();
 };
