@@ -1,5 +1,6 @@
 #include "weaverwindow.h"
 #include "ui_weaverwindow.h"
+#include <QFile>
 
 WeaverWindow::WeaverWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,6 +24,15 @@ WeaverWindow::~WeaverWindow()
 
 void WeaverWindow::on_saveDialogue_clicked()
 {
+    QFile file("dialogue.txt");
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        qCritical() << file.errorString();
+        return;
+    }
+
+    QTextStream out(&file);
+
     dialogueList[0] = ui->dialogueFirst->text();
     dialogueList[1] = ui->dialogueSecond->text();
     dialogueList[2] = ui->dialogueThird->text();
@@ -30,6 +40,10 @@ void WeaverWindow::on_saveDialogue_clicked()
     for (int i = 0; i < dialogueList.size(); i++)
     {
         int dialogueLineNumber = i + 1;
-        qInfo() << "Dialogue " + QString::number(dialogueLineNumber) << dialogueList.at(i);
+        QString dialogueText = "Dialogue " + QString::number(dialogueLineNumber) + " " + dialogueList.at(i);
+        qInfo() << dialogueText;
+        out << dialogueText << "\n";
     }
+
+    file.close();
 }
