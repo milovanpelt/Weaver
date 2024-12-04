@@ -30,9 +30,16 @@ void WeaverWindow::on_saveDialogue_clicked()
 
     for (int i = 0; i < dialogueList.size(); i++)
     {
+        QString dialogueText = dialogueList.at(i);
+        if (dialogueText.isEmpty())
+        {
+            qWarning() << "Dialogue " << (i + 1) << " is empty";
+            continue;
+        }
+
         int dialogueLineNumber = i + 1;
-        QString dialogueText = "Dialogue " + QString::number(dialogueLineNumber) + " " + dialogueList.at(i);
-        fileio.WriteToFile("dialogue.txt", dialogueText);
+        QString debugDialogueText = "Dialogue " + QString::number(dialogueLineNumber) + " " + dialogueText;
+        fileio.WriteToFile("dialogue.txt", debugDialogueText);
     }
 
     fileio.ReadFromFile("dialogue.txt");
