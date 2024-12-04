@@ -19,3 +19,28 @@ bool FileIO::WriteToFile(QString filename, QString data, bool clearFile)
     file.close();
     return true;
 }
+
+bool FileIO::ReadFromFile(QString filename)
+{
+    QFile file(filename);
+    if (!file.exists())
+    {
+        qCritical() << "File not found!";
+        return false;
+    }
+
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        qCritical() << file.errorString();
+        return false;
+    }
+
+    QTextStream stream(&file);
+    while(!stream.atEnd())
+    {
+        QString line = stream.readLine();
+        qInfo() << line;
+    }
+
+    return true;
+}
