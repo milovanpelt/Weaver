@@ -11,6 +11,7 @@ public:
     bool ReadFromFile(QString filename);
 
     bool WriteToJSONFile(QString filename, QJsonObject json_object);
+    bool ReadFromJSONFile(QString filename);
 };
 
 #endif // FILEIO_H
