@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <fileio.h>
+#include <QJsonObject>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,6 +22,7 @@ private:
     Ui::WeaverWindow *ui;
     QVector<QString> dialogueList;
     FileIO fileio;
+    QJsonObject dialogueObject;
 private:
     void on_saveDialogue_clicked();
 };

@@ -38,9 +38,9 @@ void WeaverWindow::on_saveDialogue_clicked()
         }
 
         int dialogueLineNumber = i + 1;
-        QString debugDialogueText = "Dialogue " + QString::number(dialogueLineNumber) + " " + dialogueText;
-        fileio.WriteToFile("dialogue.txt", debugDialogueText);
-    }
+        QString debugDialogueText = "Dialogue " + QString::number(dialogueLineNumber) + " ";
+        dialogueObject[debugDialogueText] = dialogueText;
 
-    fileio.ReadFromFile("dialogue.txt");
+        fileio.WriteToJSONFile("dialogue.txt", dialogueObject);
+    }
 }
