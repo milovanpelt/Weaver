@@ -43,4 +43,6 @@ void WeaverWindow::on_saveDialogue_clicked()
 
         fileio.WriteToJSONFile("dialogue.txt", dialogueObject);
     }
+
+    fileio.ReadFromJSONFile("dialogue.txt");
 }
