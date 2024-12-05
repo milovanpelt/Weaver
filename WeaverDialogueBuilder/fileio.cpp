@@ -1,6 +1,9 @@
 #include "fileio.h"
 #include "qdebug.h"
 
+#include <QJsonObject>
+#include <QJsonDocument>
+
 FileIO::FileIO()
 {}
 
@@ -42,5 +45,21 @@ bool FileIO::ReadFromFile(QString filename)
         qInfo() << line;
     }
 
+    return true;
+}
+
+bool FileIO::WriteToJSONFile(QString filename, QJsonObject json_object)
+{
+    QJsonDocument jsonDoc(json_object);
+
+    QFile file(filename);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qCritical() << file.errorString();
+        return false;
+    }
+
+    file.write(jsonDoc.toJson());
+    file.close();
     return true;
 }
