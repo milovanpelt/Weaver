@@ -15,6 +15,8 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     {
         dialogueList.push_back("");
     }
+
+    dialogueFile = "dialogue.json";
 }
 
 WeaverWindow::~WeaverWindow()
@@ -28,21 +30,5 @@ void WeaverWindow::on_saveDialogue_clicked()
     dialogueList[1] = ui->dialogueSecond->text();
     dialogueList[2] = ui->dialogueThird->text();
 
-    for (int i = 0; i < dialogueList.size(); i++)
-    {
-        QString dialogueText = dialogueList.at(i);
-        if (dialogueText.isEmpty())
-        {
-            qWarning() << "Dialogue " << (i + 1) << " is empty";
-            continue;
-        }
-
-        int dialogueLineNumber = i + 1;
-        QString debugDialogueText = "Dialogue " + QString::number(dialogueLineNumber) + " ";
-        dialogueObject[debugDialogueText] = dialogueText;
-
-        fileio.WriteToJSONFile("dialogue.txt", dialogueObject);
-    }
-
-    fileio.ReadFromJSONFile("dialogue.txt");
+    fileio.SaveDialogueToJSON(dialogueFile, dialogueList);
 }

@@ -23,6 +23,7 @@ private:
     QVector<QString> dialogueList;
     FileIO fileio;
     QJsonObject dialogueObject;
+    QString dialogueFile;
 private:
     void on_saveDialogue_clicked();
 };
