@@ -12,6 +12,9 @@ public:
 
     bool WriteToJSONFile(QString filename, QJsonObject json_object);
     bool ReadFromJSONFile(QString filename);
+
+    bool SaveDialogueToJSON(QString filename, QStringList dialogueList);
+
 };
 
 #endif // FILEIO_H

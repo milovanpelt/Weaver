@@ -3,6 +3,7 @@
 
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QJsonArray>
 
 FileIO::FileIO()
 {}
@@ -106,5 +107,31 @@ bool FileIO::ReadFromJSONFile(QString filename)
     qDebug() << jsonMap["Dialogue 2 "].toString();
     qDebug() << jsonMap["Dialogue 3 "].toString();
 
+    return true;
+}
+
+bool FileIO::SaveDialogueToJSON(QString filename, QStringList dialogueList)
+{
+    QJsonObject jsonObject;
+
+    QJsonArray dialogueArray;
+    for (QString &dialogue : dialogueList)
+    {
+        dialogueArray.append(dialogue);
+    }
+
+    jsonObject["dialogue"] = dialogueArray;
+
+    QJsonDocument jsonDoc(jsonObject);
+
+    QFile file(filename);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        qCritical() << "Could not open file for writing: " << file.errorString();
+        return false;
+    }
+
+    file.write(jsonDoc.toJson());
+    file.close();
     return true;
 }
