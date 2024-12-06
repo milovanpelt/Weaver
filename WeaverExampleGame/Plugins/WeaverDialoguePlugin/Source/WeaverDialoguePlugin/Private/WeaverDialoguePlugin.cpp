@@ -15,6 +15,30 @@ void FWeaverDialoguePluginModule::ShutdownModule()
 	// we call this function before unloading the module.
 }
 
+FString FWeaverDialoguePluginModule::ReadStringFromFile(FString FilePath, bool& bOutSucces, FString& OutInfoMessage)
+{
+	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*FilePath))
+	{
+		bOutSucces = false;
+		OutInfoMessage = FString::Printf(TEXT("File doesn't exist - '%s'"), *FilePath);
+		return "";
+	}
+
+	FString RetString = "";
+
+	if (!FFileHelper::LoadFileToString(RetString, *FilePath))
+	{
+		bOutSucces = false;
+		OutInfoMessage = FString::Printf(TEXT("Was not able to read file - '%s'"), *FilePath);
+		return "";
+	}
+
+	bOutSucces = true;
+	OutInfoMessage = FString::Printf(TEXT("File was read - '%s'"), *FilePath);
+
+	return RetString;
+}
+
 #undef LOCTEXT_NAMESPACE
 	
 IMPLEMENT_MODULE(FWeaverDialoguePluginModule, WeaverDialoguePlugin)
