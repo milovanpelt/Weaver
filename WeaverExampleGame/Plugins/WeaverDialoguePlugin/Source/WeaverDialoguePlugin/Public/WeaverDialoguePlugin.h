@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
+class FJsonObject;
+
 class FWeaverDialoguePluginModule : public IModuleInterface
 {
 public:
@@ -14,4 +16,5 @@ public:
 	virtual void ShutdownModule() override;
 private:
 	FString ReadStringFromFile(FString FilePath, bool& bOutSucces, FString& OutInfoMessage);
+	TSharedPtr<FJsonObject> ReadJsonFromFile(FString JsonFilePath, bool& bOutSucces, FString& OutInfoMessage);
 };

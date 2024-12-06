@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "WeaverDialoguePlugin.h"
+#include "Serialization/JsonSerializer.h"
 
 #define LOCTEXT_NAMESPACE "FWeaverDialoguePluginModule"
 
@@ -37,6 +38,26 @@ FString FWeaverDialoguePluginModule::ReadStringFromFile(FString FilePath, bool& 
 	OutInfoMessage = FString::Printf(TEXT("File was read - '%s'"), *FilePath);
 
 	return RetString;
+}
+
+TSharedPtr<FJsonObject> FWeaverDialoguePluginModule::ReadJsonFromFile(FString JsonFilePath, bool& bOutSucces, FString& OutInfoMessage)
+{
+	FString JsonString = FWeaverDialoguePluginModule::ReadStringFromFile(JsonFilePath, bOutSucces, OutInfoMessage);
+	if (!bOutSucces)
+	{
+		return nullptr;
+	}
+
+	TSharedPtr<FJsonObject> RetJsonObject;
+
+	if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(JsonString), RetJsonObject))
+	{
+		bOutSucces = false;
+		OutInfoMessage = FString::Printf(TEXT("Was not able to deserialze the json string - '%s'"), *JsonString);
+		return nullptr;
+	}
+
+	return RetJsonObject;
 }
 
 #undef LOCTEXT_NAMESPACE
