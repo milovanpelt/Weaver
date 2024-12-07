@@ -2,6 +2,7 @@
 
 #include "WeaverDialoguePlugin.h"
 #include "Serialization/JsonSerializer.h"
+#include "JsonObjectConverter.h"
 
 #define LOCTEXT_NAMESPACE "FWeaverDialoguePluginModule"
 
@@ -58,6 +59,29 @@ TSharedPtr<FJsonObject> FWeaverDialoguePluginModule::ReadJsonFromFile(FString Js
 	}
 
 	return RetJsonObject;
+}
+
+FDialogueData FWeaverDialoguePluginModule::ReadStructFromJsonFile(FString JsonFilePath, bool& bOutSucces, FString& OutInfoMessage)
+{
+	TSharedPtr<FJsonObject> JsonObject = ReadJsonFromFile(JsonFilePath, bOutSucces, OutInfoMessage);
+	if (!bOutSucces)
+	{
+		return FDialogueData();
+	}
+
+	FDialogueData RetDialogueData;
+
+	if (!FJsonObjectConverter::JsonObjectToUStruct<FDialogueData>(JsonObject.ToSharedRef(), &RetDialogueData))
+	{
+		bOutSucces = false;
+		OutInfoMessage = FString::Printf(TEXT("Was not able to convert data to struct - '%s'"), *JsonFilePath);
+		return FDialogueData();
+	}
+
+
+	bOutSucces = true;
+	OutInfoMessage = FString::Printf(TEXT("Read Json struct Succeeded - '%s'"), *JsonFilePath);
+	return RetDialogueData;
 }
 
 #undef LOCTEXT_NAMESPACE
