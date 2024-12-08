@@ -8,7 +8,27 @@
 
 void FWeaverDialoguePluginModule::StartupModule()
 {
-	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+	filePath = "C:/Users/Xonar/Documents/GitHub/Weaver/WeaverDialogueBuilder/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/dialogue.json";
+
+	bool bSuccess = false;
+	FString InfoMessage;
+	
+	FDialogueData data = ReadStructFromJsonFile(filePath, bSuccess, InfoMessage);
+
+	if (!bSuccess)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to read JSON File: %s"), *filePath);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("Successfully read JSON file: %s"), *InfoMessage);
+
+		// Iterate through the Dialogue array and print each entry
+		for (int32 Index = 0; Index < data.Dialogue.Num(); Index++)
+		{
+			UE_LOG(LogTemp, Log, TEXT("Dialogue %d: %s"), Index + 1, *data.Dialogue[Index]);
+		}
+	}
 }
 
 void FWeaverDialoguePluginModule::ShutdownModule()
@@ -77,7 +97,6 @@ FDialogueData FWeaverDialoguePluginModule::ReadStructFromJsonFile(FString JsonFi
 		OutInfoMessage = FString::Printf(TEXT("Was not able to convert data to struct - '%s'"), *JsonFilePath);
 		return FDialogueData();
 	}
-
 
 	bOutSucces = true;
 	OutInfoMessage = FString::Printf(TEXT("Read Json struct Succeeded - '%s'"), *JsonFilePath);

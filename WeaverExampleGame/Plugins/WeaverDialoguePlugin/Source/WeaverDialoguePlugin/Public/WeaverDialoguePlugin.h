@@ -28,4 +28,6 @@ private:
 	FString ReadStringFromFile(FString FilePath, bool& bOutSucces, FString& OutInfoMessage);
 	TSharedPtr<FJsonObject> ReadJsonFromFile(FString JsonFilePath, bool& bOutSucces, FString& OutInfoMessage);
 	FDialogueData ReadStructFromJsonFile(FString JsonFilePath, bool& bOutSucces, FString& OutInfoMessage);
+private:
+	FString filePath;
 };
