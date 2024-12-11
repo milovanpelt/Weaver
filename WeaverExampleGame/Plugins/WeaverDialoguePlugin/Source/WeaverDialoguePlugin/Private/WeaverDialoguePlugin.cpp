@@ -13,7 +13,7 @@ void FWeaverDialoguePluginModule::StartupModule()
 	bool bSuccess = false;
 	FString InfoMessage;
 	
-	FDialogueData data = ReadStructFromJsonFile(filePath, bSuccess, InfoMessage);
+	DialogueData = ReadStructFromJsonFile(filePath, bSuccess, InfoMessage);
 
 	if (!bSuccess)
 	{
@@ -24,9 +24,9 @@ void FWeaverDialoguePluginModule::StartupModule()
 		UE_LOG(LogTemp, Log, TEXT("Successfully read JSON file: %s"), *InfoMessage);
 
 		// Iterate through the Dialogue array and print each entry
-		for (int32 Index = 0; Index < data.Dialogue.Num(); Index++)
+		for (int32 Index = 0; Index < DialogueData.Dialogue.Num(); Index++)
 		{
-			UE_LOG(LogTemp, Log, TEXT("Dialogue %d: %s"), Index + 1, *data.Dialogue[Index]);
+			UE_LOG(LogTemp, Log, TEXT("Dialogue %d: %s"), Index + 1, *DialogueData.Dialogue[Index]);
 		}
 	}
 }
@@ -35,6 +35,11 @@ void FWeaverDialoguePluginModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
+}
+
+const TArray<FString>& FWeaverDialoguePluginModule::GetDialogueArray()
+{
+	return DialogueData.Dialogue;
 }
 
 FString FWeaverDialoguePluginModule::ReadStringFromFile(FString FilePath, bool& bOutSucces, FString& OutInfoMessage)
