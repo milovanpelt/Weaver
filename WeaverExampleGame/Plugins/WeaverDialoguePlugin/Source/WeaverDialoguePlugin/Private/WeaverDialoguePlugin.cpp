@@ -22,12 +22,6 @@ void FWeaverDialoguePluginModule::StartupModule()
 	else
 	{
 		UE_LOG(LogTemp, Log, TEXT("Successfully read JSON file: %s"), *InfoMessage);
-
-		// Iterate through the Dialogue array and print each entry
-		for (int32 Index = 0; Index < DialogueData.Dialogue.Num(); Index++)
-		{
-			UE_LOG(LogTemp, Log, TEXT("Dialogue %d: %s"), Index + 1, *DialogueData.Dialogue[Index]);
-		}
 	}
 }
 

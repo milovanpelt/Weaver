@@ -2,6 +2,8 @@
 
 
 #include "WeaverDialogueTriggerBox.h"
+#include "Modules/ModuleManager.h"
+#include "../Public/WeaverDialoguePlugin.h"
 
 AWeaverDialogueTriggerBox::AWeaverDialogueTriggerBox()
 {
@@ -12,7 +14,21 @@ void AWeaverDialogueTriggerBox::OverlapEvent(AActor* overlappedActor, AActor* ot
 {
 	if (otherActor && otherActor != this)
 	{
-		// print dialogue line(s)
+		if (FModuleManager::Get().IsModuleLoaded("WeaverDialoguePlugin"))
+		{
+			FWeaverDialoguePluginModule& WeaverPluginModule = FModuleManager::GetModuleChecked<FWeaverDialoguePluginModule>("WeaverDialoguePlugin");
+			const TArray<FString>& DialogueArray = WeaverPluginModule.GetDialogueArray();
+
+			// Iterate through the Dialogue array and print each entry
+			for (int32 i = 0; i < DialogueArray.Num(); i++)
+			{
+				UE_LOG(LogTemp, Log, TEXT("Dialogue %d: %s"), i + 1, *DialogueArray[i]);
+			}
+		}
+	}
+	else 
+	{
+		UE_LOG(LogTemp, Warning, TEXT("WeaverDialoguePlugin Module is not loaded."));
 	}
 }
 
