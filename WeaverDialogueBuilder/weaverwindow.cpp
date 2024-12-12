@@ -9,13 +9,6 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->btnSavingDialogue, &QPushButton::clicked, this, &WeaverWindow::on_saveDialogue_clicked);
 
-    int reservedItems = 3;
-    dialogueList.reserve(reservedItems);
-    for (qsizetype i = 0; i < reservedItems; i++)
-    {
-        dialogueList.push_back("");
-    }
-
     dialogueFile = "dialogue.json";
 }
 
@@ -26,9 +19,27 @@ WeaverWindow::~WeaverWindow()
 
 void WeaverWindow::on_saveDialogue_clicked()
 {
-    dialogueList[0] = ui->dialogueFirst->text();
-    dialogueList[1] = ui->dialogueSecond->text();
-    dialogueList[2] = ui->dialogueThird->text();
+    characterNames.append(ui->Char1_Name->text());
+    characterNames.append(ui->Char2_Name->text());
+    characterNames.append(ui->Char3_Name->text());
 
-    fileio.SaveDialogueToJSON(dialogueFile, dialogueList);
+    for (const auto &name : characterNames)
+    {
+        if (!name.isEmpty())
+        {
+            characterDialogues[name];
+        }
+    }
+
+    characterDialogues[characterNames[0]].append(ui->Char1_Dialogue1->text());
+    characterDialogues[characterNames[0]].append(ui->Char1_Dialogue2->text());
+    characterDialogues[characterNames[0]].append(ui->Char1_Dialogue3->text());
+
+    characterDialogues[characterNames[1]].append(ui->Char2_Dialogue1->text());
+    characterDialogues[characterNames[1]].append(ui->Char2_Dialogue2->text());
+    characterDialogues[characterNames[1]].append(ui->Char2_Dialogue3->text());
+
+    characterDialogues[characterNames[2]].append(ui->Char3_Dialogue1->text());
+    characterDialogues[characterNames[2]].append(ui->Char3_Dialogue2->text());
+    characterDialogues[characterNames[2]].append(ui->Char3_Dialogue3->text());
 }
