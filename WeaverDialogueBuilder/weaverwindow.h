@@ -23,7 +23,7 @@ private:
     FileIO fileio;
 
     QVector<QString> characterNames;
-    QHash<QString, QVector<QString>> characterDialogues;
+    QVector<QPair<QString, QVector<QString>>> characterDialoguesList;
 
     QString dialogueFile;
 private:

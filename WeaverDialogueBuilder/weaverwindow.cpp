@@ -27,19 +27,30 @@ void WeaverWindow::on_saveDialogue_clicked()
     {
         if (!name.isEmpty())
         {
-            characterDialogues[name];
+            characterDialoguesList.append(qMakePair(name, QVector<QString>{}));
         }
     }
 
-    characterDialogues[characterNames[0]].append(ui->Char1_Dialogue1->text());
-    characterDialogues[characterNames[0]].append(ui->Char1_Dialogue2->text());
-    characterDialogues[characterNames[0]].append(ui->Char1_Dialogue3->text());
+    qDebug() << "character 1: " << characterNames[0];
+    qDebug() << "character 2: " << characterNames[1];
+    qDebug() << "character 3: " << characterNames[2];
 
-    characterDialogues[characterNames[1]].append(ui->Char2_Dialogue1->text());
-    characterDialogues[characterNames[1]].append(ui->Char2_Dialogue2->text());
-    characterDialogues[characterNames[1]].append(ui->Char2_Dialogue3->text());
+    characterDialoguesList[0].second.append(ui->Char1_Dialogue1->text());
+    characterDialoguesList[0].second.append(ui->Char1_Dialogue2->text());
+    characterDialoguesList[0].second.append(ui->Char1_Dialogue3->text());
 
-    characterDialogues[characterNames[2]].append(ui->Char3_Dialogue1->text());
-    characterDialogues[characterNames[2]].append(ui->Char3_Dialogue2->text());
-    characterDialogues[characterNames[2]].append(ui->Char3_Dialogue3->text());
+    characterDialoguesList[1].second.append(ui->Char2_Dialogue1->text());
+    characterDialoguesList[1].second.append(ui->Char2_Dialogue2->text());
+    characterDialoguesList[1].second.append(ui->Char2_Dialogue3->text());
+
+    characterDialoguesList[2].second.append(ui->Char3_Dialogue1->text());
+    characterDialoguesList[2].second.append(ui->Char3_Dialogue2->text());
+    characterDialoguesList[2].second.append(ui->Char3_Dialogue3->text());
+
+    for (const auto &entry : characterDialoguesList)
+    {
+        qDebug() << entry.first << entry.second;
+    }
+
+    fileio.SaveDialogueToJSON(dialogueFile, characterDialoguesList);
 }
