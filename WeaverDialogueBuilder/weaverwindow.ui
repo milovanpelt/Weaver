@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>923</width>
-    <height>392</height>
+    <width>920</width>
+    <height>344</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -69,7 +69,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLineEdit" name="Char1_Name">
+          <widget class="QLineEdit" name="Char3_Name">
            <property name="cursor">
             <cursorShape>IBeamCursor</cursorShape>
            </property>
@@ -94,21 +94,21 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="Char1_DialogueOne">
+          <widget class="QLineEdit" name="Char3_Dialogue1">
            <property name="placeholderText">
             <string>DIALOGUE LINE 1</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="Char1_DialogueTwo">
+          <widget class="QLineEdit" name="Char3_Dialogue2">
            <property name="placeholderText">
             <string>DIALOGUE LINE 2</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="Char1_DialogueThree">
+          <widget class="QLineEdit" name="Char3_Dialogue3">
            <property name="placeholderText">
             <string>DIALOGUE LINE 3</string>
            </property>
@@ -181,7 +181,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLineEdit" name="Char3_Name">
+          <widget class="QLineEdit" name="Char1_Name">
            <property name="cursor">
             <cursorShape>IBeamCursor</cursorShape>
            </property>
@@ -206,21 +206,21 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="Char3_Dialogue1">
+          <widget class="QLineEdit" name="Char1_Dialogue1">
            <property name="placeholderText">
             <string>DIALOGUE LINE 1</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="Char3_Dialogue2">
+          <widget class="QLineEdit" name="Char1_Dialogue2">
            <property name="placeholderText">
             <string>DIALOGUE LINE 2</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="Char3_Dialogue3">
+          <widget class="QLineEdit" name="Char1_Dialogue3">
            <property name="placeholderText">
             <string>DIALOGUE LINE 3</string>
            </property>
@@ -255,7 +255,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>923</width>
+     <width>920</width>
      <height>25</height>
     </rect>
    </property>
