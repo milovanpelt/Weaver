@@ -35,17 +35,6 @@
 *.out
 *.app
 
-# Ignore debug and build directories
-/debug/
-/build/
-*.obj
-*.exe
-*.dll
-*.pdb
-*.lib
-*.so
-*.dylib
-
 ### Qt ###
 # C++ objects and libs
 *.so.*
