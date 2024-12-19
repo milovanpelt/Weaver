@@ -20,9 +20,11 @@ public:
     ~WeaverWindow();
 private:
     Ui::WeaverWindow *ui;
-    QVector<QString> dialogueList;
     FileIO fileio;
-    QJsonObject dialogueObject;
+
+    QVector<QString> characterNames;
+    QVector<QPair<QString, QVector<QString>>> characterDialoguesList;
+
     QString dialogueFile;
 private:
     void on_saveDialogue_clicked();

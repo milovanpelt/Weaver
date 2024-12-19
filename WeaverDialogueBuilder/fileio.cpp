@@ -102,27 +102,22 @@ bool FileIO::ReadFromJSONFile(QString filename)
     }
 
     QVariantMap jsonMap = jsonObj.toVariantMap();
-
-    qDebug() << jsonMap["Dialogue 1 "].toString();
-    qDebug() << jsonMap["Dialogue 2 "].toString();
-    qDebug() << jsonMap["Dialogue 3 "].toString();
-
     return true;
 }
 
-bool FileIO::SaveDialogueToJSON(QString filename, QStringList dialogueList)
+bool FileIO::SaveDialogueToJSON(QString filename, QVector<QPair<QString, QVector<QString>>> dialogueList)
 {
-    QJsonObject jsonObject;
+    QJsonArray jsonArray;
 
-    QJsonArray dialogueArray;
-    for (QString &dialogue : dialogueList)
+
+    for (const auto &pair : dialogueList)
     {
-        dialogueArray.append(dialogue);
+        QJsonObject jsonObject;
+        jsonObject.insert(pair.first, QJsonArray::fromStringList(QList<QString>::fromVector(pair.second)));
+        jsonArray.append(jsonObject);
     }
 
-    jsonObject["dialogue"] = dialogueArray;
-
-    QJsonDocument jsonDoc(jsonObject);
+    QJsonDocument jsonDoc(jsonArray);
 
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly))
