@@ -35,6 +35,12 @@
 *.out
 *.app
 
+# Or, ignore any Debug folder throughout the project
+**/Debug/
+
+# Ignore other common build files
+*.pdb
+
 ### Qt ###
 # C++ objects and libs
 *.so.*
