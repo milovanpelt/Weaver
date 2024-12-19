@@ -13,6 +13,8 @@
 #define WEAVERLIBRARY_API
 #endif
 
+#include "json.hpp"
+
 namespace Weaver
 {
 	class WEAVERLIBRARY_API FileIO
