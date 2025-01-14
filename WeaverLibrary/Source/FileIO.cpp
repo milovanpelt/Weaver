@@ -1,10 +1,13 @@
 #include "pch.h"
 #include "FileIO.h"
 
-Weaver::FileIO::FileIO()
+namespace Weaver
 {
-}
+	Weaver::FileIO::FileIO()
+	{
+	}
 
-Weaver::FileIO::~FileIO()
-{
+	Weaver::FileIO::~FileIO()
+	{
+	}
 }
