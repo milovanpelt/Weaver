@@ -14,6 +14,9 @@
 #endif
 
 #include "json.hpp"
+#include <iostream>
+#include <vector>
+#include "DialogueEntry.h"
 
 namespace Weaver
 {
@@ -22,6 +25,8 @@ namespace Weaver
 	public:
 		FileIO();
 		~FileIO();
+
+		static bool SaveDialogueToJSON(const std::string& filename, const std::vector<DialogueEntry>& dialogues);
 	};
 }
 
