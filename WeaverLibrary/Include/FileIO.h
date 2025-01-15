@@ -27,6 +27,7 @@ namespace Weaver
 		~FileIO();
 
 		static bool SaveDialogueToJSON(const std::string& filename, const std::vector<DialogueEntry>& dialogues);
+		static const std::vector<DialogueEntry> ReadDialogueFromJSON(const std::string& filename);
 	};
 }
 
