@@ -7,7 +7,9 @@
 #include "DialogueEntry.h"
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Weaver Library Demo!\n\n";
+
+    // Creating json file with entries
 
     DialogueEntry entry1;
     entry1.speaker = "Alaster";
@@ -22,6 +24,19 @@ int main()
     const std::string filename = "dialogue.json";
 
     Weaver::FileIO::SaveDialogueToJSON(filename, testDialogue);
+
+    // output data from file onto console
+
+    std::vector<DialogueEntry> data = Weaver::FileIO::ReadDialogueFromJSON(filename);
+    for (const auto& entry : data)
+    {
+        std::cout << "Speaker name: " << entry.speaker << "\n";
+
+        for (size_t i = 0 ; i < entry.lines.size(); i++)
+        {
+            std::cout << "Line " << (i + 1) << " : " << entry.lines[i] << "\n";
+        }
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
