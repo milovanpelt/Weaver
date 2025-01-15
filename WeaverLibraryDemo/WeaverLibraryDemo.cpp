@@ -4,10 +4,24 @@
 
 #include <iostream>
 #include "WeaverLibrary.h"
-
+#include "DialogueEntry.h"
 int main()
 {
     std::cout << "Hello World!\n";
+
+    DialogueEntry entry1;
+    entry1.speaker = "Alaster";
+    entry1.lines = { "Hellow there", "How are you?" };
+
+    DialogueEntry entry2;
+    entry2.speaker = "James";
+    entry2.lines = { "I am doing great", "Do you know where I can find the tea glasses?" };
+
+    std::vector<DialogueEntry> testDialogue = { entry1, entry2 };
+
+    const std::string filename = "dialogue.json";
+
+    Weaver::FileIO::SaveDialogueToJSON(filename, testDialogue);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
