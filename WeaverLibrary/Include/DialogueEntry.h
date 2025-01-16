@@ -13,8 +13,7 @@
 #define WEAVERLIBRARY_API
 #endif
 
-#include <string>
-#include <vector>
+#include <pch.h>
 
 struct DialogueEntry
 {

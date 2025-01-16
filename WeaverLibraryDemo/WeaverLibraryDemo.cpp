@@ -1,10 +1,7 @@
 // WeaverLibraryDemo.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-
-#include <iostream>
 #include "WeaverLibrary.h"
-#include "DialogueEntry.h"
 int main()
 {
     std::cout << "Weaver Library Demo!\n\n";
