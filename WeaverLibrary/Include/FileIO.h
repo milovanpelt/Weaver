@@ -13,9 +13,6 @@
 #define WEAVERLIBRARY_API
 #endif
 
-#include "json.hpp"
-#include <iostream>
-#include <vector>
 #include "DialogueEntry.h"
 
 namespace Weaver
