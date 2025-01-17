@@ -22,10 +22,7 @@ public:
 private:
     Ui::WeaverWindow *ui;
 
-    QVector<QString> characterNames;
-    QVector<QPair<QString, QVector<QString>>> characterDialoguesList;
-
-    QString dialogueFile;
+    std::string dialogueFile;
 private:
     void on_saveDialogue_clicked();
 };
