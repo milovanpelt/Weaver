@@ -17,7 +17,7 @@ namespace Weaver
 	{
 		nlohmann::json dialogueData;
 
-		for (const auto entry : dialogues)
+		for (const auto& entry : dialogues)
 		{
 			dialogueData[entry.speaker] = entry.lines;
 		}
