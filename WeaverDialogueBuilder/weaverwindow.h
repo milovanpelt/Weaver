@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <fileio.h>
 #include <QJsonObject>
+#include <WeaverLibrary.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,7 +21,6 @@ public:
     ~WeaverWindow();
 private:
     Ui::WeaverWindow *ui;
-    FileIO fileio;
 
     QVector<QString> characterNames;
     QVector<QPair<QString, QVector<QString>>> characterDialoguesList;
