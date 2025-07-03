@@ -36,3 +36,13 @@ INCLUDEPATH += $$PWD/../WeaverLibrary/External/JSON/nlohmann
 DEPENDPATH += $$INCLUDEPATH
 
 DEFINES += WEAVERLIBRARY_EXPORTS
+
+# node editor library
+win32: LIBS += -L$$PWD/external/nodeeditor-master/build/lib/Debug/ -lQtNodes
+
+INCLUDEPATH += $$PWD/external/nodeeditor-master/include
+DEPENDPATH += $$PWD/external/nodeeditor-master/include
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/external/nodeeditor-master/build/lib/Debug/QtNodes.lib
+
+DEFINES += NODE_EDITOR_STATIC
