@@ -12,6 +12,19 @@ DialogueContainer::DialogueContainer(QWidget *parent)
     {
         ui->CharacterList->addItem(QString::number(i) + "- Character Name");
     }
+
+    ui->DialogueTextBox->setStyleSheet
+    (
+        "QLineEdit {"
+        "   color: black;"
+        "   background-color: white;"
+        "   border: 1px solid gray;"
+        "   border-radius: 4px;"
+        "}"
+        "QLineEdit:placeholder {"
+        "   color: lightgray;"
+        "}"
+    );
 }
 
 DialogueContainer::~DialogueContainer()

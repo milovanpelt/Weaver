@@ -16,21 +16,73 @@
   <property name="styleSheet">
    <string notr="true">background-color: #FF6464;</string>
   </property>
-  <widget class="QComboBox" name="CharacterList">
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>20</y>
-     <width>65</width>
-     <height>24</height>
+     <y>10</y>
+     <width>361</width>
+     <height>121</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 100);</string>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QComboBox" name="CharacterList">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(255, 255, 255, 100);</string>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Settings">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Trashbin">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="DialogueTextBox">
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 100);</string>
+      </property>
+      <property name="placeholderText">
+       <string>Type Dialogue Here</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
