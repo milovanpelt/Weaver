@@ -7,12 +7,31 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>220</height>
+    <height>165</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #FF6464;</string>
+  </property>
+  <widget class="QComboBox" name="CharacterList">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>65</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 100);</string>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
