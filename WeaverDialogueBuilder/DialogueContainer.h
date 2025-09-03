@@ -1,5 +1,5 @@
-#ifndef DIALOGUECONTAINERR_H
-#define DIALOGUECONTAINERR_H
+#ifndef DIALOGUECONTAINER_H
+#define DIALOGUECONTAINER_H
 
 #include <QFrame>
 
@@ -19,4 +19,4 @@ private:
     Ui::DialogueContainer *ui;
 };
 
-#endif // DIALOGUECONTAINERR_H
+#endif // DIALOGUECONTAINER_H

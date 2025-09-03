@@ -14,7 +14,7 @@ SOURCES += \
     ../WeaverLibrary/Source/FileIO.cpp
 
 HEADERS += \
-    DialogueContainerr.h \
+    DialogueContainer.h \
     WeaverWindow.h
 
 FORMS += \

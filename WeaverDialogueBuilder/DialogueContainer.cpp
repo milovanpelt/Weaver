@@ -1,4 +1,4 @@
-#include "DialogueContainerr.h"
+#include "DialogueContainer.h"
 #include "ui_DialogueContainer.h"
 
 DialogueContainer::DialogueContainer(QWidget *parent)
