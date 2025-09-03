@@ -8,15 +8,18 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    DialogueContainer.cpp \
+    WeaverWindow.cpp \
     main.cpp \
-    weaverwindow.cpp \
     ../WeaverLibrary/Source/FileIO.cpp
 
 HEADERS += \
-    weaverwindow.h
+    DialogueContainerr.h \
+    WeaverWindow.h
 
 FORMS += \
-    weaverwindow.ui
+    DialogueContainer.ui \
+    WeaverWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

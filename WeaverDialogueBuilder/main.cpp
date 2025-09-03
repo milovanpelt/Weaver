@@ -1,4 +1,4 @@
-#include "weaverwindow.h"
+#include "WeaverWindow.h"
 
 #include <QApplication>
 
