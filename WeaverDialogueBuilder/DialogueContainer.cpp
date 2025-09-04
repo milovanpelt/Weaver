@@ -15,13 +15,13 @@ DialogueContainer::DialogueContainer(QWidget *parent)
 
     ui->DialogueTextBox->setStyleSheet
     (
-        "QLineEdit {"
+        "QPlainTextEdit {"
         "   color: black;"
         "   background-color: white;"
         "   border: 1px solid gray;"
         "   border-radius: 4px;"
         "}"
-        "QLineEdit:placeholder {"
+        "QPlainTextEdit:placeholder {"
         "   color: lightgray;"
         "}"
     );

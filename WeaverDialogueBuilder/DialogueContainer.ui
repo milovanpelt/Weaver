@@ -7,11 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>165</height>
+    <height>106</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
-   <string>Frame</string>
+   <string>Dialogue Container</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: #FF6464;</string>
@@ -22,10 +28,13 @@
      <x>20</x>
      <y>10</y>
      <width>361</width>
-     <height>121</height>
+     <height>81</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="bottomMargin">
@@ -70,15 +79,21 @@
      </layout>
     </item>
     <item>
-     <widget class="QLineEdit" name="DialogueTextBox">
-      <property name="toolTip">
-       <string/>
+     <widget class="QPlainTextEdit" name="DialogueTextBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgba(255, 255, 255, 100);</string>
+      <property name="frameShape">
+       <enum>QFrame::Shape::NoFrame</enum>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
       </property>
       <property name="placeholderText">
-       <string>Type Dialogue Here</string>
+       <string>Enter Dialogue</string>
       </property>
      </widget>
     </item>
