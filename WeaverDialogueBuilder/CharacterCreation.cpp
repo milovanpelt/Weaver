@@ -12,3 +12,9 @@ CharacterCreation::~CharacterCreation()
 {
     delete ui;
 }
+
+void CharacterCreation::on_CancelButton_clicked()
+{
+    close();
+}
+
