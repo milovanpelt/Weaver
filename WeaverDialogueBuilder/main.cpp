@@ -1,7 +1,4 @@
 #include "WeaverWindow.h"
-// #include "DialogueContainer.h"
-// #include "CharacterCreation.h"
-
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -10,9 +7,6 @@ int main(int argc, char *argv[])
 
     WeaverWindow mainWindow;
     mainWindow.show();
-
-    // CharacterCreation characterCreation;
-    // characterCreation.show();
 
     return a.exec();
 }
