@@ -14,6 +14,18 @@ WeaverWindow::WeaverWindow(QWidget *parent)
         ui->DialogueListContainer->addItem(QString::number(i));
     }
 
+    //ui->CurrentSpeaker->setText("LONGGGGGGGGGGGGG CHARACTER NAMEEEEEEEEE");
+    ui->CurrentSpeaker->setText("NPC");
+    ui->CurrentSpeaker->setStyleSheet
+    (
+        "QLabel {"
+        "   color: black;"
+        "   background-color: white;"
+        "   border: 1px solid black;"
+        "   border-radius: 2px;"
+        "}"
+    );
+
 }
 
 WeaverWindow::~WeaverWindow()
