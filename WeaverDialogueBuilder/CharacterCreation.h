@@ -15,6 +15,9 @@ public:
     explicit CharacterCreation(QWidget *parent = nullptr);
     ~CharacterCreation();
 
+private slots:
+    void on_CancelButton_clicked();
+
 private:
     Ui::CharacterCreation *ui;
 };

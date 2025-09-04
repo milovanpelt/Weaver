@@ -1,7 +1,7 @@
 #include "WeaverWindow.h"
 #include "ui_WeaverWindow.h"
 #include "DialogueContainer.h"
-
+#include "CharacterCreation.h"
 
 WeaverWindow::WeaverWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -37,7 +37,7 @@ void WeaverWindow::on_AddDialogue_clicked()
     auto* item = new QListWidgetItem();
 
     // create new dialogue widget
-    auto* newDialogue = new DialogueContainer(this, "speaker");
+    DialogueContainer* newDialogue = new DialogueContainer(this, "speaker");
 
     // add empty item to dialogue list
     ui->DialogueListContainer->addItem(item);
@@ -47,5 +47,12 @@ void WeaverWindow::on_AddDialogue_clicked()
 
     // set the size of the dialogue widget
     item->setSizeHint(QSize(400,123));
+}
+
+
+void WeaverWindow::on_AddCharacter_clicked()
+{
+    CharacterCreation* characterCreation = new CharacterCreation();
+    characterCreation->show();
 }
 
