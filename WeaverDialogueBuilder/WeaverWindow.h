@@ -19,6 +19,9 @@ class WeaverWindow : public QMainWindow
 public:
     WeaverWindow(QWidget *parent = nullptr);
     ~WeaverWindow();
+private slots:
+    void on_AddDialogue_clicked();
+
 private:
     Ui::WeaverWindow *ui;
 

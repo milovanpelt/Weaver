@@ -1,5 +1,6 @@
 #include "WeaverWindow.h"
 #include "ui_WeaverWindow.h"
+#include "DialogueContainer.h"
 
 
 WeaverWindow::WeaverWindow(QWidget *parent)
@@ -8,13 +9,6 @@ WeaverWindow::WeaverWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    int testItemAmount = 35;
-    for (int i = 0; i < testItemAmount; i++)
-    {
-        ui->DialogueListContainer->addItem(QString::number(i));
-    }
-
-    //ui->CurrentSpeaker->setText("LONGGGGGGGGGGGGG CHARACTER NAMEEEEEEEEE");
     ui->CurrentSpeaker->setText("NPC");
     ui->CurrentSpeaker->setStyleSheet
     (
@@ -36,3 +30,22 @@ WeaverWindow::~WeaverWindow()
 void WeaverWindow::on_saveDialogue_clicked()
 {
 }
+
+void WeaverWindow::on_AddDialogue_clicked()
+{
+    // create empty list item
+    auto* item = new QListWidgetItem();
+
+    // create new dialogue widget
+    auto* newDialogue = new DialogueContainer();
+
+    // add empty item to dialogue list
+    ui->DialogueListContainer->addItem(item);
+
+    // set empty item to new dialogue widget
+    ui->DialogueListContainer->setItemWidget(item, newDialogue);
+
+    // set the size of the dialogue widget
+    item->setSizeHint(QSize(400,123));
+}
+
