@@ -12,7 +12,7 @@ class DialogueContainer : public QFrame
     Q_OBJECT
 
 public:
-    explicit DialogueContainer(QWidget *parent = nullptr, QString type = "speaker");
+    explicit DialogueContainer(QWidget *parent = nullptr, QString type = "dialogue");
     ~DialogueContainer();
 
 private:

@@ -37,7 +37,7 @@ void WeaverWindow::on_AddDialogue_clicked()
     auto* item = new QListWidgetItem();
 
     // create new dialogue widget
-    DialogueContainer* newDialogue = new DialogueContainer(this, "speaker");
+    DialogueContainer* newDialogue = new DialogueContainer(this, "dialogue");
 
     // add empty item to dialogue list
     ui->DialogueListContainer->addItem(item);

@@ -13,7 +13,7 @@ DialogueContainer::DialogueContainer(QWidget *parent, QString type)
         ui->CharacterList->addItem(QString::number(i) + "- Character Name");
     }
 
-    if (type == "speaker")
+    if (type == "dialogue")
     {
         ui->DialogueTextBox->setStyleSheet
         (
