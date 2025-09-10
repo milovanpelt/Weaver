@@ -8,15 +8,15 @@ int main()
 
     // Creating json file with entries
 
-    DialogueEntry entry1;
+    Weaver::DialogueEntry entry1;
     entry1.speaker = "Alaster";
     entry1.lines = { "Hellow there", "How are you?" };
 
-    DialogueEntry entry2;
+    Weaver::DialogueEntry entry2;
     entry2.speaker = "James";
     entry2.lines = { "I am doing great", "Do you know where I can find the tea glasses?" };
 
-    std::vector<DialogueEntry> testDialogue = { entry1, entry2 };
+    std::vector<Weaver::DialogueEntry> testDialogue = { entry1, entry2 };
 
     const std::string filename = "dialogue.json";
 
@@ -24,7 +24,7 @@ int main()
 
     // output data from file onto console
 
-    std::vector<DialogueEntry> data = Weaver::FileIO::ReadDialogueFromJSON(filename);
+    std::vector<Weaver::DialogueEntry> data = Weaver::FileIO::ReadDialogueFromJSON(filename);
     for (const auto& entry : data)
     {
         std::cout << "Speaker name: " << entry.speaker << "\n";

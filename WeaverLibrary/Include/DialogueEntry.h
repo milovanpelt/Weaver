@@ -15,10 +15,13 @@
 
 #include <pch.h>
 
-struct DialogueEntry
+namespace Weaver
 {
-	std::string speaker;
-	std::vector<std::string> lines;
-};
+	struct DialogueEntry
+	{
+		std::string speaker;
+		std::vector<std::string> lines;
+	};
+}
 
 #endif // !DIALOGUEENTRY_H
