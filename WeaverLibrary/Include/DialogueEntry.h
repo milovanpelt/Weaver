@@ -14,13 +14,23 @@
 #endif
 
 #include <pch.h>
+#include <uuid_v4.h>
 
 namespace Weaver
 {
+	enum class DialogueTypes
+	{
+		Dialogue,
+		Choice,
+		Reply
+	};
+
 	struct DialogueEntry
 	{
-		std::string speaker;
-		std::vector<std::string> lines;
+		UUIDv4::UUID line_id;
+		UUIDv4::UUID speaker_id;
+		DialogueTypes type;
+		std::string line;
 	};
 }
 
