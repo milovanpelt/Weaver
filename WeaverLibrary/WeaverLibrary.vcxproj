@@ -143,11 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Include\DialogueEntry.h" />
     <ClInclude Include="Include\FileIO.h" />
     <ClInclude Include="Include\WeaverLibrary.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
