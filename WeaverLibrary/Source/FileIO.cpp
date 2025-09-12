@@ -17,10 +17,10 @@ namespace Weaver
 	{
 		nlohmann::json dialogueData;
 
-		for (const auto& entry : dialogues)
+		/*for (const auto& entry : dialogues)
 		{
 			dialogueData[entry.speaker] = entry.lines;
-		}
+		}*/
 
 		std::ofstream output_file(filename);
 		if (!output_file.is_open())
@@ -49,7 +49,7 @@ namespace Weaver
 
 		dialogueJSONData = nlohmann::json::parse(input_file);
 
-		for (auto& entry : dialogueJSONData.items())
+		/*for (auto& entry : dialogueJSONData.items())
 		{
 			DialogueEntry dialogueEntry;
 
@@ -57,7 +57,7 @@ namespace Weaver
 			dialogueEntry.lines = entry.value();
 
 			dialogueEntries.push_back(dialogueEntry);
-		}
+		}*/
 
 		std::cout << "[FileIO]: " << "Read " << filename << "\n";
 		return dialogueEntries;
