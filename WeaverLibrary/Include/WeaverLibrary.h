@@ -8,7 +8,7 @@
 #define WEAVERLIBRARY_API __declspec(dllimport)
 #endif
 
-#include "pch.h"
+#include <pch.h>
 #include "FileIO.h"
 
 #include "DialogueEntry.h"

@@ -14,7 +14,7 @@
 #endif
 
 #include <pch.h>
-#include <uuid_v4.h>
+#include "uuid_v4.h"
 #include <unordered_map>
 
 class DialogueEntry;
