@@ -20,12 +20,21 @@ UUIDv4::UUID Weaver::DialogueManager::AddCharacter(const std::string& name)
 	newCharacter.name = name;
 
 	characters[newCharacterID] = newCharacter;
+
 	return newCharacterID;
 }
 
 std::vector<std::string> Weaver::DialogueManager::GetCharacterNames()
 {
-	return std::vector<std::string>();
+	std::vector<std::string> characterNames;
+	characterNames.reserve(characters.size());
+	
+	for (const auto& c : characters)
+	{
+		characterNames.push_back(c.second.name);
+	}
+
+	return characterNames;
 }
 
 UUIDv4::UUID Weaver::DialogueManager::CreateScene(const std::string& name)
