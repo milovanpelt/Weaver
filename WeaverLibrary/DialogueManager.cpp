@@ -3,6 +3,12 @@
 
 namespace Weaver
 {
+	std::unordered_map<UUIDv4::UUID, Scene> DialogueManager::scenes;
+	std::unordered_map<UUIDv4::UUID, Character> DialogueManager::characters;
+}
+
+namespace Weaver
+{
 	UUIDv4::UUID DialogueManager::AddCharacter(const std::string& newCharacterName)
 	{
 		// No duplicate character names can exist
