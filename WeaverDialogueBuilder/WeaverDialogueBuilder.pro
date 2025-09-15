@@ -38,6 +38,7 @@ PRECOMPILED_HEADER = $$PWD/../WeaverLibrary/pch.h
 INCLUDEPATH += $$PWD/../WeaverLibrary
 INCLUDEPATH += $$PWD/../WeaverLibrary/Include
 INCLUDEPATH += $$PWD/../WeaverLibrary/External/JSON/nlohmann
+INCLUDEPATH += $$PWD/../WeaverLibrary/External/UUID
 
 DEPENDPATH += $$INCLUDEPATH
 
