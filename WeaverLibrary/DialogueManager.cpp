@@ -1,82 +1,85 @@
 #include "pch.h"
 #include "DialogueManager.h"
 
-UUIDv4::UUID Weaver::DialogueManager::AddCharacter(const std::string& newCharacterName)
+namespace Weaver
 {
-	// No duplicate character names can exist
-	for (const auto& character : characters)
+	UUIDv4::UUID DialogueManager::AddCharacter(const std::string& newCharacterName)
 	{
-		const std::string& existingCharacterName = character.second.name;
-		if (newCharacterName == existingCharacterName)
+		// No duplicate character names can exist
+		for (const auto& character : characters)
 		{
-			std::cout << "[DialogueManager]: Character name already exists: " + newCharacterName + " \n";
-			return UUIDv4::UUID();
+			const std::string& existingCharacterName = character.second.name;
+			if (newCharacterName == existingCharacterName)
+			{
+				std::cout << "[DialogueManager]: Character name already exists: " + newCharacterName + " \n";
+				return UUIDv4::UUID();
+			}
 		}
-	}
-	
-	Weaver::Character newCharacter;
-	UUIDv4::UUID newCharacterID = CreateID();
-	
-	newCharacter.id = newCharacterID;
-	newCharacter.name = newCharacterName;
 
-	characters[newCharacterID] = newCharacter;
+		Character newCharacter;
+		UUIDv4::UUID newCharacterID = CreateID();
 
-	return newCharacterID;
-}
+		newCharacter.id = newCharacterID;
+		newCharacter.name = newCharacterName;
 
-std::vector<std::string> Weaver::DialogueManager::GetCharacterNames()
-{
-	std::vector<std::string> characterNames;
-	characterNames.reserve(characters.size());
-	
-	for (const auto& c : characters)
-	{
-		characterNames.push_back(c.second.name);
+		characters[newCharacterID] = newCharacter;
+
+		return newCharacterID;
 	}
 
-	return characterNames;
-}
-
-UUIDv4::UUID Weaver::DialogueManager::CreateScene(const std::string& newSceneName)
-{
-	// No duplicate scene names can exist
-	for (const auto& scene : scenes)
+	std::vector<std::string> DialogueManager::GetCharacterNames()
 	{
-		const std::string& existingSceneName = scene.second.name;
-		if (newSceneName == existingSceneName)
+		std::vector<std::string> characterNames;
+		characterNames.reserve(DialogueManager::characters.size());
+
+		for (const auto& character : characters)
 		{
-			std::cout << "[DialogueManager]: Scene name already exists: " + newSceneName + " \n";
-			return UUIDv4::UUID();
+			characterNames.push_back(character.second.name);
 		}
+
+		return characterNames;
 	}
 
-	Weaver::Scene newScene;
-	UUIDv4::UUID newSceneID = CreateID();
+	UUIDv4::UUID DialogueManager::CreateScene(const std::string& newSceneName)
+	{
+		// No duplicate scene names can exist
+		for (const auto& scene : scenes)
+		{
+			const std::string& existingSceneName = scene.second.name;
+			if (newSceneName == existingSceneName)
+			{
+				std::cout << "[DialogueManager]: Scene name already exists: " + newSceneName + " \n";
+				return UUIDv4::UUID();
+			}
+		}
 
-	newScene.id = newSceneID;
-	newScene.name = newSceneName;
+		Scene newScene;
+		UUIDv4::UUID newSceneID = CreateID();
 
-	scenes[newSceneID] = newScene;
+		newScene.id = newSceneID;
+		newScene.name = newSceneName;
 
-	return newSceneID;
-}
+		scenes[newSceneID] = newScene;
 
-UUIDv4::UUID Weaver::DialogueManager::CreateDialogueEntry(UUIDv4::UUID sceneID, Weaver::DialogueTypes type)
-{
-	return UUIDv4::UUID();
-}
+		return newSceneID;
+	}
 
-void Weaver::DialogueManager::SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID)
-{
-}
+	UUIDv4::UUID Weaver::DialogueManager::CreateDialogueEntry(UUIDv4::UUID sceneID, Weaver::DialogueTypes type)
+	{
+		return UUIDv4::UUID();
+	}
 
-void Weaver::DialogueManager::SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
-{
-}
+	void Weaver::DialogueManager::SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID)
+	{
+	}
 
-UUIDv4::UUID Weaver::DialogueManager::CreateID()
-{
-	UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
-	return uuidGenerator.getUUID();
+	void Weaver::DialogueManager::SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
+	{
+	}
+
+	UUIDv4::UUID Weaver::DialogueManager::CreateID()
+	{
+		UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
+		return uuidGenerator.getUUID();
+	}
 }
