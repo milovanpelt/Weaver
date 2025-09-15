@@ -14,10 +14,9 @@
 #endif
 
 #include <pch.h>
-#include "uuid_v4.h"
 #include <unordered_map>
-
-class DialogueEntry;
+#include "uuid_v4.h"
+#include "DialogueEntry.h"
 
 namespace Weaver
 {
@@ -25,7 +24,7 @@ namespace Weaver
 	{
 		UUIDv4::UUID id;
 		std::string name;
-		std::unordered_map<UUIDv4::UUID, DialogueEntry> dialogues;
+		std::unordered_map<UUIDv4::UUID, Weaver::DialogueEntry> dialogues;
 		std::vector<UUIDv4::UUID> dialogueOrder;
 	};
 }
