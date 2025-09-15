@@ -1,7 +1,7 @@
 #include "DialogueContainer.h"
 #include "ui_DialogueContainer.h"
 
-DialogueContainer::DialogueContainer(QWidget *parent, QString type)
+DialogueContainer::DialogueContainer(QWidget *parent, UUIDv4::UUID sceneID, Weaver::DialogueTypes type)
     : QFrame(parent)
     , ui(new Ui::DialogueContainer)
 {
@@ -13,8 +13,10 @@ DialogueContainer::DialogueContainer(QWidget *parent, QString type)
         ui->CharacterList->addItem(QString::number(i) + "- Character Name");
     }
 
-    if (type == "dialogue")
+    if (type == Weaver::DialogueTypes::Dialogue)
     {
+        UUIDv4::UUID newLineID = Weaver::DialogueManager::CreateDialogueEntry(sceneID, type);
+
         ui->DialogueTextBox->setStyleSheet
         (
             "QPlainTextEdit {"
@@ -28,11 +30,11 @@ DialogueContainer::DialogueContainer(QWidget *parent, QString type)
             "}"
         );
     }
-    else if (type == "choice")
+    else if (type == Weaver::DialogueTypes::Choice)
     {
         return;
     }
-    else if (type == "reply")
+    else if (type == Weaver::DialogueTypes::Reply)
     {
         return;
     }
