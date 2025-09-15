@@ -3,7 +3,24 @@
 
 UUIDv4::UUID Weaver::DialogueManager::AddCharacter(const std::string& name)
 {
-	return UUIDv4::UUID();
+	// No duplicate character names can exist
+	for (const auto& c : characters)
+	{
+		if (name == c.second.name)
+		{
+			std::cout << "[DialogueManager]: Character name already exists: " + name + " \n";
+			return UUIDv4::UUID();
+		}
+	}
+	
+	Weaver::Character newCharacter;
+	UUIDv4::UUID newCharacterID = CreateID();
+	
+	newCharacter.id = newCharacterID;
+	newCharacter.name = name;
+
+	characters[newCharacterID] = newCharacter;
+	return newCharacterID;
 }
 
 std::vector<std::string> Weaver::DialogueManager::GetCharacterNames()
@@ -27,4 +44,10 @@ void Weaver::DialogueManager::SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID line
 
 void Weaver::DialogueManager::SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
 {
+}
+
+UUIDv4::UUID Weaver::DialogueManager::CreateID()
+{
+	UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
+	return uuidGenerator.getUUID();
 }

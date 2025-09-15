@@ -19,6 +19,8 @@ namespace Weaver
 	private:
 		static std::unordered_map<UUIDv4::UUID, Weaver::Scene> scenes;
 		static std::unordered_map<UUIDv4::UUID, Weaver::Character> characters;
+
+		static UUIDv4::UUID CreateID();
 	};
 }
 
