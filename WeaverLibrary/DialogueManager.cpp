@@ -1,14 +1,15 @@
 #include "pch.h"
 #include "DialogueManager.h"
 
-UUIDv4::UUID Weaver::DialogueManager::AddCharacter(const std::string& name)
+UUIDv4::UUID Weaver::DialogueManager::AddCharacter(const std::string& newCharacterName)
 {
 	// No duplicate character names can exist
-	for (const auto& c : characters)
+	for (const auto& character : characters)
 	{
-		if (name == c.second.name)
+		const std::string& existingCharacterName = character.second.name;
+		if (newCharacterName == existingCharacterName)
 		{
-			std::cout << "[DialogueManager]: Character name already exists: " + name + " \n";
+			std::cout << "[DialogueManager]: Character name already exists: " + newCharacterName + " \n";
 			return UUIDv4::UUID();
 		}
 	}
@@ -17,7 +18,7 @@ UUIDv4::UUID Weaver::DialogueManager::AddCharacter(const std::string& name)
 	UUIDv4::UUID newCharacterID = CreateID();
 	
 	newCharacter.id = newCharacterID;
-	newCharacter.name = name;
+	newCharacter.name = newCharacterName;
 
 	characters[newCharacterID] = newCharacter;
 
