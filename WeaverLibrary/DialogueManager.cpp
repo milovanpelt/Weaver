@@ -72,7 +72,21 @@ namespace Weaver
 
 	UUIDv4::UUID Weaver::DialogueManager::CreateDialogueEntry(UUIDv4::UUID sceneID, Weaver::DialogueTypes type)
 	{
-		return UUIDv4::UUID();
+		DialogueEntry newDialogueEntry;
+		UUIDv4::UUID newDialogueEntryID = CreateID();
+
+		newDialogueEntry.line_id = newDialogueEntryID;
+		newDialogueEntry.type = type;
+
+		auto sceneIt = scenes.find(sceneID);
+		if (sceneIt != scenes.end())
+		{
+			Scene& scene = sceneIt->second;
+			scene.dialogues[newDialogueEntryID] = newDialogueEntry;
+			scene.dialogueOrder.push_back(sceneID);
+		}
+		
+		return newDialogueEntryID;
 	}
 
 	void Weaver::DialogueManager::SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID)
