@@ -11,7 +11,7 @@
 #include <pch.h>
 #include "FileIO.h"
 
-#include "DialogueEntry.h"
+#include "DialogueManager.h"
 
 
 
