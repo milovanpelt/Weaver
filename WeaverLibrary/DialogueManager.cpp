@@ -37,9 +37,28 @@ std::vector<std::string> Weaver::DialogueManager::GetCharacterNames()
 	return characterNames;
 }
 
-UUIDv4::UUID Weaver::DialogueManager::CreateScene(const std::string& name)
+UUIDv4::UUID Weaver::DialogueManager::CreateScene(const std::string& newSceneName)
 {
-	return UUIDv4::UUID();
+	// No duplicate scene names can exist
+	for (const auto& scene : scenes)
+	{
+		const std::string& existingSceneName = scene.second.name;
+		if (newSceneName == existingSceneName)
+		{
+			std::cout << "[DialogueManager]: Scene name already exists: " + newSceneName + " \n";
+			return UUIDv4::UUID();
+		}
+	}
+
+	Weaver::Scene newScene;
+	UUIDv4::UUID newSceneID = CreateID();
+
+	newScene.id = newSceneID;
+	newScene.name = newSceneName;
+
+	scenes[newSceneID] = newScene;
+
+	return newSceneID;
 }
 
 UUIDv4::UUID Weaver::DialogueManager::CreateDialogueEntry(UUIDv4::UUID sceneID, Weaver::DialogueTypes type)
