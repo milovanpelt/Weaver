@@ -30,13 +30,13 @@
     <ClInclude Include="Include\FileIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="Include\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
+    <ClInclude Include="Include\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DialogueManager.h">
+    <ClInclude Include="Include\DialogueManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <ClCompile Include="Source\FileIO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DialogueManager.cpp">
+    <ClCompile Include="Source\DialogueManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
