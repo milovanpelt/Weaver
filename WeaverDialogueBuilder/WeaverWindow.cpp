@@ -2,6 +2,7 @@
 #include "ui_WeaverWindow.h"
 #include "DialogueContainer.h"
 #include "CharacterCreation.h"
+#include "DialogueManager.h"
 
 WeaverWindow::WeaverWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,6 +21,7 @@ WeaverWindow::WeaverWindow(QWidget *parent)
         "}"
     );
 
+    SceneID = Weaver::DialogueManager::CreateScene("main");
 }
 
 WeaverWindow::~WeaverWindow()
@@ -37,7 +39,7 @@ void WeaverWindow::on_AddDialogue_clicked()
     auto* item = new QListWidgetItem();
 
     // create new dialogue widget
-    DialogueContainer* newDialogue = new DialogueContainer(this, "dialogue");
+    DialogueContainer* newDialogue = new DialogueContainer(this, SceneID, Weaver::DialogueTypes::Dialogue);
 
     // add empty item to dialogue list
     ui->DialogueListContainer->addItem(item);
