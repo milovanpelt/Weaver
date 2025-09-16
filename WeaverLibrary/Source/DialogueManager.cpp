@@ -46,6 +46,11 @@ namespace Weaver
 		return characterNames;
 	}
 
+	std::unordered_map<UUIDv4::UUID, Character> DialogueManager::GetCharacters()
+	{
+		return characters;
+	}
+
 	UUIDv4::UUID DialogueManager::CreateScene(const std::string& newSceneName)
 	{
 		// No duplicate scene names can exist
@@ -68,6 +73,11 @@ namespace Weaver
 		scenes[newSceneID] = newScene;
 
 		return newSceneID;
+	}
+
+	std::unordered_map<UUIDv4::UUID, Scene> DialogueManager::GetScenes()
+	{
+		return scenes;
 	}
 
 	UUIDv4::UUID Weaver::DialogueManager::CreateDialogueEntry(UUIDv4::UUID sceneID, Weaver::DialogueTypes type)
