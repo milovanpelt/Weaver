@@ -44,7 +44,7 @@ namespace Weaver
 			return false;
 		}
 		
-		output_file << weaverJsonData.dump(4);
+		output_file << weaverJsonData.dump(2);
 		output_file.close();
 
 		return true;
