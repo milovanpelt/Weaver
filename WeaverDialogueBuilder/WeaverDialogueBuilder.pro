@@ -12,7 +12,7 @@ SOURCES += \
     DialogueContainer.cpp \
     WeaverWindow.cpp \
     main.cpp \
-    ../WeaverLibrary/Source/DialogueManager.cpp
+    ../WeaverLibrary/Source/DialogueManager.cpp \
     ../WeaverLibrary/Source/FileIO.cpp
 
 HEADERS += \
