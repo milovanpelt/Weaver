@@ -58,3 +58,9 @@ void WeaverWindow::on_AddCharacter_clicked()
     characterCreation->show();
 }
 
+
+void WeaverWindow::on_SaveDialogue_clicked()
+{
+    Weaver::FileIO::SaveDialogueToJSON("Dialogue.json", Weaver::DialogueManager::GetCharacters(), Weaver::DialogueManager::GetScenes());
+}
+

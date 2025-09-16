@@ -24,6 +24,8 @@ private slots:
 
     void on_AddCharacter_clicked();
 
+    void on_SaveDialogue_clicked();
+
 private:
     Ui::WeaverWindow *ui;
 
