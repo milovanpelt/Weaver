@@ -19,17 +19,16 @@ namespace Weaver
 
 		for (const auto& character : characters)
 		{
-			std::string stringedCharacterID = static_cast<std::ostringstream*> (&(std::ostringstream() << character.second.id))->str();
-			std::string stringedCharacterName = static_cast<std::ostringstream*> (&(std::ostringstream() << character.second.name))->str();
-			dialogueData["characters"] = { stringedCharacterID, stringedCharacterName };
+			std::string stringedCharacterID = character.second.id.str();
+			std::string characterName = character.second.name;
+			dialogueData["characters"] = { stringedCharacterID, characterName };
 		}
 
 		for (const auto& scene : scenes)
 		{
-			std::string stringedSceneID = static_cast<std::ostringstream*> (&(std::ostringstream() << scene.second.id))->str();
-			std::string stringedSceneName = static_cast<std::ostringstream*> (&(std::ostringstream() << scene.second.name))->str();
-
-			dialogueData["scenes"] = { stringedSceneID, stringedSceneName };
+			std::string stringedSceneID = scene.second.id.str();
+			std::string sceneName = scene.second.name;
+			dialogueData["characters"] = { stringedSceneID, sceneName };
 		}
 
 		std::ofstream output_file(filename);
