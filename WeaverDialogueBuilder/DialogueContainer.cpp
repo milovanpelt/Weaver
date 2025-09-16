@@ -7,12 +7,6 @@ DialogueContainer::DialogueContainer(QWidget *parent, UUIDv4::UUID sceneID, Weav
 {
     ui->setupUi(this);
 
-    int testItemAmount = 35;
-    for (int i = 0; i < testItemAmount; i++)
-    {
-        ui->CharacterList->addItem(QString::number(i) + "- Character Name");
-    }
-
     if (type == Weaver::DialogueTypes::Dialogue)
     {
         UUIDv4::UUID newLineID = Weaver::DialogueManager::CreateDialogueEntry(sceneID, type);
@@ -29,6 +23,14 @@ DialogueContainer::DialogueContainer(QWidget *parent, UUIDv4::UUID sceneID, Weav
             "   color: lightgray;"
             "}"
         );
+
+        ui->CharacterList->clear();
+
+        for (int i = 0; i < Weaver::DialogueManager::GetCharacterNames().size(); i++)
+        {
+            QString character = QString::fromStdString(Weaver::DialogueManager::GetCharacterNames()[i]);
+            ui->CharacterList->addItem(character);
+        }
     }
     else if (type == Weaver::DialogueTypes::Choice)
     {
