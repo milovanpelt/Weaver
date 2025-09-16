@@ -20,21 +20,17 @@ namespace Weaver
 		for (const auto& character : characters)
 		{
 			std::string stringedCharacterID = character.second.id.str();
-			std::cout << "[FileIO] Character ID: " + stringedCharacterID + "\n";
 			std::string characterName = character.second.name;
-			std::cout << "[FileIO] Character Name: " + characterName + "\n";
 			weaverJsonData["characters"].push_back({
 				{ "id", stringedCharacterID },
 				{ "name", characterName }
-				});
+			});
 		}
 
 		for (const auto& scene : scenes)
 		{
 			std::string stringedSceneID = scene.second.id.str();
-			std::cout << "[FileIO] Scene ID: " + stringedSceneID + "\n";
 			std::string sceneName = scene.second.name;
-			std::cout << "[FileIO] Scene Name: " + sceneName + "\n";
 			weaverJsonData["scenes"].push_back({
 				{ "id", stringedSceneID },
 				{ "name", sceneName }
@@ -48,7 +44,7 @@ namespace Weaver
 			return false;
 		}
 		
-		output_file << weaverJsonData.dump(2);
+		output_file << weaverJsonData.dump(4);
 		output_file.close();
 
 		return true;
