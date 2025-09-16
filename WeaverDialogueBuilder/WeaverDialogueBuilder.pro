@@ -13,6 +13,7 @@ SOURCES += \
     WeaverWindow.cpp \
     main.cpp \
     ../WeaverLibrary/Source/DialogueManager.cpp
+    ../WeaverLibrary/Source/FileIO.cpp
 
 HEADERS += \
     CharacterCreation.h \
