@@ -15,20 +15,24 @@ namespace Weaver
 
 	bool FileIO::SaveDialogueToJSON(const std::string& filename, const std::unordered_map<UUIDv4::UUID, Character>& characters, const std::unordered_map<UUIDv4::UUID, Scene>& scenes)
 	{
-		nlohmann::json dialogueData;
+		nlohmann::json weaverJsonData;
 
 		for (const auto& character : characters)
 		{
 			std::string stringedCharacterID = character.second.id.str();
+			std::cout << "[FileIO] Character ID: " + stringedCharacterID + "\n";
 			std::string characterName = character.second.name;
-			dialogueData["characters"] = { stringedCharacterID, characterName };
+			std::cout << "[FileIO] Character Name: " + stringedCharacterID + "\n";
+			weaverJsonData["characters"] = { stringedCharacterID, characterName };
 		}
 
 		for (const auto& scene : scenes)
 		{
 			std::string stringedSceneID = scene.second.id.str();
+			std::cout << "[FileIO] Scene ID: " + stringedSceneID + "\n";
 			std::string sceneName = scene.second.name;
-			dialogueData["characters"] = { stringedSceneID, sceneName };
+			std::cout << "[FileIO] Scene Name: " + sceneName + "\n";
+			weaverJsonData["scenes"] = { stringedSceneID, sceneName };
 		}
 
 		std::ofstream output_file(filename);
@@ -38,7 +42,7 @@ namespace Weaver
 			return false;
 		}
 		
-		output_file << dialogueData.dump(2);
+		output_file << weaverJsonData.dump(2);
 		output_file.close();
 
 		return true;
