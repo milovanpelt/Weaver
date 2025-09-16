@@ -13,7 +13,8 @@
 #define WEAVERLIBRARY_API
 #endif
 
-#include "DialogueEntry.h"
+#include "Scene.h"
+#include "Character.h"
 
 namespace Weaver
 {
@@ -23,8 +24,8 @@ namespace Weaver
 		FileIO();
 		~FileIO();
 
-		static bool SaveDialogueToJSON(const std::string& filename, const std::vector<DialogueEntry>& dialogues);
-		static const std::vector<DialogueEntry> ReadDialogueFromJSON(const std::string& filename);
+		static bool SaveDialogueToJSON(const std::string& filename, const std::unordered_map<UUIDv4::UUID, Character>& characters, const std::unordered_map<UUIDv4::UUID, Scene>& scenes);
+		//static const std::vector<DialogueEntry> ReadDialogueFromJSON(const std::string& filename);
 	};
 }
 
