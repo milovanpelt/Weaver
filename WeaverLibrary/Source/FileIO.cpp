@@ -15,7 +15,12 @@ namespace Weaver
 
 	bool FileIO::SaveDialogueToJSON(const std::string& filename, const std::unordered_map<UUIDv4::UUID, Character>& characters, const std::unordered_map<UUIDv4::UUID, Scene>& scenes)
 	{
-		nlohmann::json weaverJsonData;
+        if (characters.size() == 0 || scenes.size() == 0)
+        {
+            return false;
+        }
+
+        nlohmann::json weaverJsonData = nlohmann::json::object();
 
 		for (const auto& character : characters)
 		{
@@ -31,16 +36,35 @@ namespace Weaver
 		{
 			std::string stringedSceneID = scene.second.id.str();
 			std::string sceneName = scene.second.name;
-			weaverJsonData["scenes"].push_back({
-				{ "id", stringedSceneID },
-				{ "name", sceneName }
-			});
+
+            nlohmann::json sceneJson;
+            sceneJson["id"] = stringedSceneID;
+            sceneJson["name"] = sceneName;
+
+            nlohmann::json dialogueJson = nlohmann::json::object();
+
+            if (scene.second.dialogues.size() > 0){
+                for (const auto& dialogue : scene.second.dialogues)
+                {
+                    std::string stringedLineID = dialogue.second.line_id.str();
+                    std::string stringedSpeakerID = dialogue.second.speaker_id.str();
+                    std::string line = dialogue.second.line;
+
+                    dialogueJson["line_id"] = stringedLineID;
+                    dialogueJson["speaker_id"] = stringedSpeakerID;
+                    dialogueJson["line"] = line;
+                }
+
+                sceneJson["dialogues"] = dialogueJson;
+
+                weaverJsonData["scenes"].push_back(sceneJson);
+            }
 		}
 
 		std::ofstream output_file(filename);
 		if (!output_file.is_open())
 		{
-			std::cout << filename << " could not be opened";
+            std::cout << filename << " could not be opened" << std::endl;
 			return false;
 		}
 		

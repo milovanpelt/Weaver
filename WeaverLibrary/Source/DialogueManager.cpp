@@ -93,7 +93,7 @@ namespace Weaver
 		{
 			Scene& scene = sceneIt->second;
 			scene.dialogues[newDialogueEntryID] = newDialogueEntry;
-			scene.dialogueOrder.push_back(sceneID);
+			scene.dialogueOrder.push_back(newDialogueEntryID);
 		}
 		
 		return newDialogueEntryID;
@@ -105,6 +105,18 @@ namespace Weaver
 
 	void Weaver::DialogueManager::SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
 	{
+        auto sceneIt = scenes.find(sceneID);
+        if (sceneIt != scenes.end())
+        {
+            Scene& scene = sceneIt->second;
+
+			auto dialogueIt = scene.dialogues.find(lineID);
+			if (dialogueIt != scene.dialogues.end())
+			{
+				DialogueEntry& entry = dialogueIt->second;
+				entry.line = text;
+			}
+        }
 	}
 
 	UUIDv4::UUID Weaver::DialogueManager::CreateID()
