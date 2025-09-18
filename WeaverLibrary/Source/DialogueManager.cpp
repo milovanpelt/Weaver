@@ -30,6 +30,8 @@ namespace Weaver
 
 		characters[newCharacterID] = newCharacter;
 
+        std::cout << "[DialogueManager]: Character added: " + newCharacterName + " \n";
+
 		return newCharacterID;
 	}
 
@@ -85,6 +87,8 @@ namespace Weaver
 		DialogueEntry newDialogueEntry;
 		UUIDv4::UUID newDialogueEntryID = CreateID();
 
+		newDialogueEntry.line = "";
+		newDialogueEntry.speaker_id = UUIDv4::UUID();
 		newDialogueEntry.line_id = newDialogueEntryID;
 		newDialogueEntry.type = type;
 
