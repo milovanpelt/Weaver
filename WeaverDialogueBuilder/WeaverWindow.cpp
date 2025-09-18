@@ -48,7 +48,7 @@ void WeaverWindow::on_AddDialogue_clicked()
     ui->DialogueListContainer->setItemWidget(item, newDialogue);
 
     // set the size of the dialogue widget
-    item->setSizeHint(QSize(400,123));
+    item->setSizeHint(QSize(250,123));
 }
 
 
