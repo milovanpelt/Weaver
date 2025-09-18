@@ -41,7 +41,8 @@ namespace Weaver
             sceneJson["id"] = stringedSceneID;
             sceneJson["name"] = sceneName;
 
-            nlohmann::json dialogueJson = nlohmann::json::object();
+            nlohmann::json dialogueJson = nlohmann::json::array();
+			nlohmann::json dialogueOrderJson = nlohmann::json::array();
 
             if (scene.second.dialogues.size() > 0){
                 for (const auto& dialogue : scene.second.dialogues)
@@ -50,14 +51,27 @@ namespace Weaver
                     std::string stringedSpeakerID = dialogue.second.speaker_id.str();
                     std::string line = dialogue.second.line;
 
-                    dialogueJson["line_id"] = stringedLineID;
-                    dialogueJson["speaker_id"] = stringedSpeakerID;
-                    dialogueJson["line"] = line;
+					dialogueJson.push_back({
+						{"line_id", stringedLineID},
+						{"speaker_id", stringedSpeakerID},
+						{"line", line}
+					});
                 }
 
                 sceneJson["dialogues"] = dialogueJson;
 
-                weaverJsonData["scenes"].push_back(sceneJson);
+				for (const auto& order : scene.second.dialogueOrder)
+				{
+					std::string stringedID = order.str();
+
+					dialogueOrderJson.push_back({
+						{"line_id", stringedID}
+					});
+				}
+
+				sceneJson["dialogueOrder"] = dialogueOrderJson;
+
+				weaverJsonData["scenes"].push_back(sceneJson);
             }
 		}
 
