@@ -1,16 +1,17 @@
 #include "pch.h"
 #include "DialogueManager.h"
 
-namespace Weaver
+namespace Weaver 
 {
 	std::unordered_map<UUIDv4::UUID, Scene> scenes;
 	std::unordered_map<UUIDv4::UUID, Character> characters;
 
-	UUIDv4::UUID CreateID();
-}
+	UUIDv4::UUID CreateID()
+	{
+		UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
+		return uuidGenerator.getUUID();
+	}
 
-namespace Weaver
-{
 	UUIDv4::UUID CreateCharacter(const std::string& newCharacterName)
 	{
 		// No duplicate character names can exist
@@ -32,7 +33,7 @@ namespace Weaver
 
 		characters[newCharacterID] = newCharacter;
 
-        std::cout << "[DialogueManager]: Character added: " + newCharacterName + " \n";
+		std::cout << "[DialogueManager]: Character added: " + newCharacterName + " \n";
 
 		return newCharacterID;
 	}
@@ -84,7 +85,7 @@ namespace Weaver
 		return scenes;
 	}
 
-	UUIDv4::UUID Weaver::AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue)
+	UUIDv4::UUID AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, DialogueTypes type, const std::string& dialogue)
 	{
 		DialogueEntry newDialogueEntry;
 		UUIDv4::UUID newDialogueEntryID = CreateID();
@@ -101,20 +102,20 @@ namespace Weaver
 			scene.dialogues[newDialogueEntryID] = newDialogueEntry;
 			scene.dialogueOrder.push_back(newDialogueEntryID);
 		}
-		
+
 		return newDialogueEntryID;
 	}
 
-	void Weaver::SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID)
+	void SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID)
 	{
 	}
 
-	void Weaver::SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
+	void SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
 	{
-        auto sceneIt = scenes.find(sceneID);
-        if (sceneIt != scenes.end())
-        {
-            Scene& scene = sceneIt->second;
+		auto sceneIt = scenes.find(sceneID);
+		if (sceneIt != scenes.end())
+		{
+			Scene& scene = sceneIt->second;
 
 			auto dialogueIt = scene.dialogues.find(lineID);
 			if (dialogueIt != scene.dialogues.end())
@@ -122,12 +123,6 @@ namespace Weaver
 				DialogueEntry& entry = dialogueIt->second;
 				entry.line = text;
 			}
-        }
-	}
-
-	UUIDv4::UUID Weaver::CreateID()
-	{
-		UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
-		return uuidGenerator.getUUID();
+		}
 	}
 }
