@@ -9,7 +9,7 @@ namespace Weaver
 
 namespace Weaver
 {
-	UUIDv4::UUID AddCharacter(const std::string& newCharacterName)
+	UUIDv4::UUID CreateCharacter(const std::string& newCharacterName)
 	{
 		// No duplicate character names can exist
 		for (const auto& character : characters)

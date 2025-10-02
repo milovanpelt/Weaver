@@ -19,7 +19,7 @@
 
 namespace Weaver
 {
-		static UUIDv4::UUID AddCharacter(const std::string& newCharacterName);
+		static UUIDv4::UUID CreateCharacter(const std::string& newCharacterName);
 		static std::vector<std::string> GetCharacterNames();
 		static std::unordered_map<UUIDv4::UUID, Character> GetCharacters();
 		static UUIDv4::UUID CreateScene(const std::string& newSceneName);
