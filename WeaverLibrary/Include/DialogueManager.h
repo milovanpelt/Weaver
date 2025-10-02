@@ -24,7 +24,7 @@ namespace Weaver
 		static std::unordered_map<UUIDv4::UUID, Character> GetCharacters();
 		static UUIDv4::UUID CreateScene(const std::string& newSceneName);
 		static std::unordered_map<UUIDv4::UUID, Scene> GetScenes();
-		static UUIDv4::UUID CreateDialogueEntry(UUIDv4::UUID sceneID, Weaver::DialogueTypes type);
+		static UUIDv4::UUID AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue);
 		static void SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID);
 		static void SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text);
 

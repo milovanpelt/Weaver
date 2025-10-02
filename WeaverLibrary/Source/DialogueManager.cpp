@@ -82,13 +82,13 @@ namespace Weaver
 		return scenes;
 	}
 
-	UUIDv4::UUID Weaver::CreateDialogueEntry(UUIDv4::UUID sceneID, Weaver::DialogueTypes type)
+	UUIDv4::UUID Weaver::AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue)
 	{
 		DialogueEntry newDialogueEntry;
 		UUIDv4::UUID newDialogueEntryID = CreateID();
 
-		newDialogueEntry.line = "";
-		newDialogueEntry.speaker_id = UUIDv4::UUID();
+		newDialogueEntry.line = dialogue;
+		newDialogueEntry.speaker_id = speakerID;
 		newDialogueEntry.line_id = newDialogueEntryID;
 		newDialogueEntry.type = type;
 
