@@ -5,6 +5,8 @@ namespace Weaver
 {
 	std::unordered_map<UUIDv4::UUID, Scene> scenes;
 	std::unordered_map<UUIDv4::UUID, Character> characters;
+
+	UUIDv4::UUID CreateID();
 }
 
 namespace Weaver
