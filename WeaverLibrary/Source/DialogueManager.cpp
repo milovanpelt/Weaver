@@ -39,24 +39,6 @@ namespace Weaver
 		return newCharacterID;
 	}
 
-	std::vector<std::string> GetCharacterNames()
-	{
-		std::vector<std::string> characterNames;
-		characterNames.reserve(characters.size());
-
-		for (const auto& character : characters)
-		{
-			characterNames.push_back(character.second.name);
-		}
-
-		return characterNames;
-	}
-
-	std::unordered_map<UUIDv4::UUID, Character> GetCharacters()
-	{
-		return characters;
-	}
-
 	UUIDv4::UUID CreateScene(const std::string& newSceneName)
 	{
 		// No duplicate scene names can exist
@@ -77,11 +59,6 @@ namespace Weaver
 		sceneNames.try_emplace(newSceneName, newSceneID);
 
 		return newSceneID;
-	}
-
-	std::unordered_map<UUIDv4::UUID, Scene> GetScenes()
-	{
-		return scenes;
 	}
 
 	UUIDv4::UUID AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, DialogueTypes type, const std::string& dialogue)
@@ -123,5 +100,52 @@ namespace Weaver
 				entry.line = text;
 			}
 		}
+	}
+
+	std::vector<std::string> GetCharacterNames()
+	{
+		std::vector<std::string> characterNames;
+		characterNames.reserve(characters.size());
+
+		for (const auto& character : characters)
+		{
+			characterNames.push_back(character.second.name);
+		}
+
+		return characterNames;
+	}
+
+	std::unordered_map<UUIDv4::UUID, Character> GetCharacters()
+	{
+		return characters;
+	}
+
+	std::unordered_map<UUIDv4::UUID, Scene> GetScenes()
+	{
+		return scenes;
+	}
+
+	UUIDv4::UUID GetSceneID(const std::string& name)
+	{
+		auto sceneIDFound = sceneNames.find(name);
+		if (sceneIDFound == sceneNames.end())
+		{
+			return UUIDv4::UUID();
+			std::cout << "[DialogueManager]: Can't find requested name: " << name << std::endl;
+		}
+
+		return sceneIDFound->second;
+	}
+
+	UUIDv4::UUID GetCharacterID(const std::string& name)
+	{
+		auto characterIDFound = sceneNames.find(name);
+		if (characterIDFound == sceneNames.end())
+		{
+			return UUIDv4::UUID();
+			std::cout << "[DialogueManager]: Can't find requested name: " << name << std::endl;
+		}
+
+		return characterIDFound->second;
 	}
 }
