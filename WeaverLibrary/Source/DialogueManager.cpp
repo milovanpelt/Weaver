@@ -4,7 +4,10 @@
 namespace Weaver 
 {
 	std::unordered_map<UUIDv4::UUID, Scene> scenes;
+	std::unordered_map<std::string, UUIDv4::UUID> sceneNames;
+
 	std::unordered_map<UUIDv4::UUID, Character> characters;
+	std::unordered_map<std::string, UUIDv4::UUID> charactereNames;
 
 	UUIDv4::UUID CreateID()
 	{
@@ -25,13 +28,11 @@ namespace Weaver
 			}
 		}
 
-		Character newCharacter;
 		UUIDv4::UUID newCharacterID = CreateID();
+		Character newCharacter{ newCharacterID , newCharacterName };
 
-		newCharacter.id = newCharacterID;
-		newCharacter.name = newCharacterName;
-
-		characters[newCharacterID] = newCharacter;
+		characters.try_emplace(newCharacterID , newCharacter);
+		charactereNames.try_emplace(newCharacterName , newCharacterID);
 
 		std::cout << "[DialogueManager]: Character added: " + newCharacterName + " \n";
 
@@ -69,13 +70,11 @@ namespace Weaver
 			}
 		}
 
-		Scene newScene;
 		UUIDv4::UUID newSceneID = CreateID();
+		Scene newScene = { newSceneID , newSceneName };
 
-		newScene.id = newSceneID;
-		newScene.name = newSceneName;
-
-		scenes[newSceneID] = newScene;
+		scenes.try_emplace(newSceneID, newScene);
+		sceneNames.try_emplace(newSceneName, newSceneID);
 
 		return newSceneID;
 	}
