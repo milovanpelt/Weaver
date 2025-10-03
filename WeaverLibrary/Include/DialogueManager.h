@@ -20,13 +20,15 @@
 namespace Weaver
 {
 	WEAVERLIBRARY_API UUIDv4::UUID CreateCharacter(const std::string& newCharacterName);
-	WEAVERLIBRARY_API std::vector<std::string> GetCharacterNames();
-	WEAVERLIBRARY_API std::unordered_map<UUIDv4::UUID, Character> GetCharacters();
 	WEAVERLIBRARY_API UUIDv4::UUID CreateScene(const std::string& newSceneName);
-	WEAVERLIBRARY_API std::unordered_map<UUIDv4::UUID, Scene> GetScenes();
 	WEAVERLIBRARY_API UUIDv4::UUID AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue);
+	
 	WEAVERLIBRARY_API void SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID);
 	WEAVERLIBRARY_API void SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text);
+
+	WEAVERLIBRARY_API std::vector<std::string> GetCharacterNames();
+	WEAVERLIBRARY_API std::unordered_map<UUIDv4::UUID, Character> GetCharacters();
+	WEAVERLIBRARY_API std::unordered_map<UUIDv4::UUID, Scene> GetScenes();
 }
 
 #endif // !DIALOGUEMANAGER_H
