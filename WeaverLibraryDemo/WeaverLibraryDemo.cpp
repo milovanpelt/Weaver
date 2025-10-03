@@ -5,4 +5,14 @@
 int main()
 {
     std::cout << "Weaver Library Demo!\n\n";
+
+    // Create Characters
+    auto albus = Weaver::CreateCharacter("Albus");
+    auto minevra = Weaver::CreateCharacter("Minerva");
+
+    // Create scene
+    auto scene_boyWhoLived = Weaver::CreateScene("The Boy who lived");
+
+    // Create dialogues
+    Weaver::AddDialogueToCharacter(scene_boyWhoLived, albus, Weaver::DialogueTypes::Dialogue, "Hello Professor");
 }
