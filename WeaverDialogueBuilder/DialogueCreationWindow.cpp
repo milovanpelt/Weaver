@@ -52,6 +52,6 @@ void DialogueCreationWindow::on_button_AddCharacter_clicked()
 
 void DialogueCreationWindow::on_CharacterCreated(const std::string& name)
 {
-
+    std::cout << "Name: " + name << std::endl;
 }
 
