@@ -1,6 +1,26 @@
 #include "DialogueCreationWindow.h"
 #include "ui_DialogueCreationWindow.h"
 
+DialogueCreationWindow::DialogueCreationWindow(WeaverController* controller, UUIDv4::UUID SceneID, QWidget *parent)
+    : QFrame(parent)
+    , ui(new Ui::DialogueCreationWindow)
+{
+    ui->setupUi(this);
+    this->setWindowTitle("Add Character");
+
+    currentSceneID = SceneID;
+    weaverController = controller;
+    characterCreationWindow = new CharacterCreationWindow();
+    characterCreationWindow->setAttribute(Qt::WA_DeleteOnClose);
+
+    QObject::connect(characterCreationWindow, &CharacterCreationWindow::CreateCharacterRequested,
+                     controller, &WeaverController::on_CharacterCreatedRequested);
+
+    QObject::connect(characterCreationWindow, &QObject::destroyed, [this]() {
+        characterCreationWindow = nullptr;
+    });
+}
+
 DialogueCreationWindow::DialogueCreationWindow(UUIDv4::UUID SceneID, QWidget *parent)
     : QFrame(parent)
     , ui(new Ui::DialogueCreationWindow)
@@ -9,7 +29,15 @@ DialogueCreationWindow::DialogueCreationWindow(UUIDv4::UUID SceneID, QWidget *pa
     this->setWindowTitle("Add Character");
 
     currentSceneID = SceneID;
+    characterCreationWindow = new CharacterCreationWindow();
+    characterCreationWindow->setAttribute(Qt::WA_DeleteOnClose);
+
+    QObject::connect(characterCreationWindow, &QObject::destroyed, [this]() {
+        characterCreationWindow = nullptr;
+    });
 }
+
+
 
 DialogueCreationWindow::~DialogueCreationWindow()
 {
@@ -52,6 +80,6 @@ void DialogueCreationWindow::on_button_AddCharacter_clicked()
 
 void DialogueCreationWindow::on_CharacterCreated(const std::string& name)
 {
-    std::cout << "Name: " + name << std::endl;
+    std::cout << "[QT - DialogueCreationWindow] Name added: " + name << std::endl;
 }
 

@@ -4,7 +4,9 @@
 #include <QFrame>
 #include "DialogueManager.h"
 #include "CharacterCreationWindow.h"
+#include "WeaverController.h"
 #include "uuid_v4.h"
+
 
 namespace Ui {
 class DialogueCreationWindow;
@@ -15,6 +17,7 @@ class DialogueCreationWindow : public QFrame
     Q_OBJECT
 
 public:
+    explicit DialogueCreationWindow(WeaverController* controller, UUIDv4::UUID SceneID, QWidget *parent = nullptr);
     explicit DialogueCreationWindow(UUIDv4::UUID SceneID, QWidget *parent = nullptr);
     ~DialogueCreationWindow();
 signals:
@@ -29,6 +32,7 @@ private:
     Ui::DialogueCreationWindow *ui;
     CharacterCreationWindow* characterCreationWindow = nullptr;
     UUIDv4::UUID currentSceneID;
+    WeaverController* weaverController = nullptr;
 };
 
 #endif // DIALOGUECREATIONWINDOW_H

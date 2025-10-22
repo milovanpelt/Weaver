@@ -12,7 +12,7 @@ WeaverWindow::WeaverWindow(QWidget *parent)
 
     SceneID = Weaver::CreateScene("main");
     dialogueFile = "WeaverDialogue.json";
-    dialogueCreationWindow = new DialogueCreationWindow(SceneID);
+    dialogueCreationWindow = new DialogueCreationWindow(controller, SceneID);
 
     // ui->CurrentSpeaker->setText("NPC");
     // ui->CurrentSpeaker->setStyleSheet
@@ -33,7 +33,7 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     QObject::connect(controller, &WeaverController::DialogueCreated,
                      this, &WeaverWindow::on_CreateDialogue);
 
-    // signal from weaver controller to weaver window to update character list
+    // signal from weaver controller to dialogue creation window  to update character list
     QObject::connect(controller, &WeaverController::CharacterCreated,
                      dialogueCreationWindow, &DialogueCreationWindow::on_CharacterCreated);
 }
