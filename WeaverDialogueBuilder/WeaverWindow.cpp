@@ -11,6 +11,7 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     ui->setupUi(this);
 
     SceneID = Weaver::CreateScene("main");
+    dialogueFile = "WeaverDialogue.json";
 
     // ui->CurrentSpeaker->setText("NPC");
     // ui->CurrentSpeaker->setStyleSheet
@@ -62,6 +63,6 @@ void WeaverWindow::on_AddDialogue_clicked()
 
 void WeaverWindow::on_SaveDialogue_clicked()
 {
-    //Weaver::FileIO::SaveDialogueToJSON("Dialogue.json", Weaver::DialogueManager::GetCharacters(), Weaver::DialogueManager::GetScenes());
+    emit SavingDialogueRequested(dialogueFile);
 }
 

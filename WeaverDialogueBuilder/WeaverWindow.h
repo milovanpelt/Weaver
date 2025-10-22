@@ -21,6 +21,8 @@ class WeaverWindow : public QMainWindow
 public:
     WeaverWindow(QWidget *parent = nullptr);
     ~WeaverWindow();
+signals:
+    void SavingDialogueRequested(const std::string& filename);
 private slots:
     void on_AddDialogue_clicked();
 
