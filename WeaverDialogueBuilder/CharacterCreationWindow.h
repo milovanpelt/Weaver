@@ -7,13 +7,13 @@ namespace Ui {
 class CharacterCreation;
 }
 
-class CharacterCreation : public QFrame
+class CharacterCreationWindow : public QFrame
 {
     Q_OBJECT
 
 public:
-    explicit CharacterCreation(QWidget *parent = nullptr);
-    ~CharacterCreation();
+    explicit CharacterCreationWindow(QWidget *parent = nullptr);
+    ~CharacterCreationWindow();
 
 private slots:
     void on_CancelButton_clicked();
