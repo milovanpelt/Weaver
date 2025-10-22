@@ -19,16 +19,16 @@ public:
     ~DialogueCreationWindow();
 signals:
     void CreateDialogue(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue);
-private:
-    Ui::DialogueCreationWindow *ui;
-    CharacterCreationWindow* characterCreationWindow = nullptr;
-    UUIDv4::UUID currentSceneID;
+public slots:
+    void on_CharacterCreated(const std::string& name);
 private slots:
     void on_button_Confirm_clicked();
     void on_button_Cancel_clicked();
     void on_button_AddCharacter_clicked();
-private slots:
-    void on_CharacterCreated(const std::string& name);
+private:
+    Ui::DialogueCreationWindow *ui;
+    CharacterCreationWindow* characterCreationWindow = nullptr;
+    UUIDv4::UUID currentSceneID;
 };
 
 #endif // DIALOGUECREATIONWINDOW_H
