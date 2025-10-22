@@ -2,6 +2,8 @@
 #define DIALOGUECREATIONWINDOW_H
 
 #include <QFrame>
+#include "DialogueManager.h"
+#include "uuid_v4.h"
 
 namespace Ui {
 class DialogueCreationWindow;
@@ -15,12 +17,10 @@ public:
     explicit DialogueCreationWindow(QWidget *parent = nullptr);
     ~DialogueCreationWindow();
 signals:
-
-
+    void CreateDialogue(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue);
 private:
     Ui::DialogueCreationWindow *ui;
 private slots:
-
     void on_button_Confirm_clicked();
     void on_button_Cancel_clicked();
     void on_button_AddCharacter_clicked();
