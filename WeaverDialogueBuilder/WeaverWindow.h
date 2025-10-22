@@ -5,6 +5,7 @@
 #include <fileio.h>
 #include <QJsonObject>
 #include <WeaverLibrary.h>
+#include "WeaverController.h"
 
 class DialogueCreationWindow;
 
@@ -37,5 +38,6 @@ private:
     UUIDv4::UUID SceneID;
 
     DialogueCreationWindow* dialogueCreationWindow = nullptr;
+    WeaverController* controller;
 };
 #endif // WEAVERWINDOW_H

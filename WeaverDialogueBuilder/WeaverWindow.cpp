@@ -8,6 +8,7 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     , ui(new Ui::WeaverWindow)
 {
     ui->setupUi(this);
+    controller = new WeaverController(this);
 
     SceneID = Weaver::CreateScene("main");
     dialogueFile = "WeaverDialogue.json";
@@ -22,6 +23,10 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     //     "   border-radius: 2px;"
     //     "}"
     // );
+
+    // signal from weaver window to weaver controller to save dialogue
+    QObject::connect(this, &WeaverWindow::SavingDialogueRequested,
+                     controller, &WeaverController::on_SavingDialogueRequested);
 }
 
 WeaverWindow::~WeaverWindow()
