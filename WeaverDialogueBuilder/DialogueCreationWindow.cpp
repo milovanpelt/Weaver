@@ -1,12 +1,14 @@
 #include "DialogueCreationWindow.h"
 #include "ui_DialogueCreationWindow.h"
 
-DialogueCreationWindow::DialogueCreationWindow(QWidget *parent)
+DialogueCreationWindow::DialogueCreationWindow(UUIDv4::UUID SceneID, QWidget *parent)
     : QFrame(parent)
     , ui(new Ui::DialogueCreationWindow)
 {
     ui->setupUi(this);
     this->setWindowTitle("Add Character");
+
+    currentSceneID = SceneID;
 }
 
 DialogueCreationWindow::~DialogueCreationWindow()
@@ -16,6 +18,11 @@ DialogueCreationWindow::~DialogueCreationWindow()
 
 void DialogueCreationWindow::on_button_Confirm_clicked()
 {
+    // 1. get character name and its id
+    // 2. get dialogue type
+    // 3. get typed dialogue
+    // 4. emit DialogueCreationWindow::CreateDialogue(currentSceneID, speakerID, type, dialogue);
+
     close();
 }
 
