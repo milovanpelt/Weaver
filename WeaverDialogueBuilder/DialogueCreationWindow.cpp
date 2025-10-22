@@ -28,6 +28,18 @@ void DialogueCreationWindow::on_button_Cancel_clicked()
 
 void DialogueCreationWindow::on_button_AddCharacter_clicked()
 {
+    if (!characterCreationWindow)
+    {
+        characterCreationWindow = new CharacterCreationWindow();
 
+        characterCreationWindow->setAttribute(Qt::WA_DeleteOnClose);
+
+        QObject::connect(characterCreationWindow, &QObject::destroyed, [this]() {
+            qDebug() << "Frame was destroyed";
+            characterCreationWindow = nullptr;
+        });
+    }
+
+    characterCreationWindow->show();
 }
 
