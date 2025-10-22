@@ -16,7 +16,7 @@ DialogueCreationWindow::~DialogueCreationWindow()
 
 void DialogueCreationWindow::on_button_Confirm_clicked()
 {
-
+    close();
 }
 
 
