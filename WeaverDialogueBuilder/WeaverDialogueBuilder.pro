@@ -10,6 +10,7 @@ CONFIG += c++17
 SOURCES += \
     CharacterCreation.cpp \
     DialogueContainer.cpp \
+    DialogueCreationWindow.cpp \
     WeaverController.cpp \
     WeaverWindow.cpp \
     main.cpp \
@@ -19,12 +20,14 @@ SOURCES += \
 HEADERS += \
     CharacterCreation.h \
     DialogueContainer.h \
+    DialogueCreationWindow.h \
     WeaverController.h \
     WeaverWindow.h
 
 FORMS += \
     CharacterCreation.ui \
     DialogueContainer.ui \
+    DialogueCreationWindow.ui \
     WeaverWindow.ui
 
 # Default rules for deployment.
