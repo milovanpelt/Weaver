@@ -36,6 +36,7 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     // signal from weaver controller to dialogue creation window  to update character list
     QObject::connect(controller, &WeaverController::CharacterCreated,
                      dialogueCreationWindow, &DialogueCreationWindow::on_CharacterCreated);
+
 }
 
 WeaverWindow::~WeaverWindow()
@@ -57,21 +58,6 @@ void WeaverWindow::on_AddDialogue_clicked()
     }
 
     dialogueCreationWindow->show();
-
-    // // create empty list item
-    // auto* item = new QListWidgetItem();
-
-    // // create new dialogue widget
-    // DialogueContainer* newDialogue = new DialogueContainer(this, SceneID, Weaver::DialogueTypes::Dialogue);
-
-    // // add empty item to dialogue list
-    // ui->DialogueListContainer->addItem(item);
-
-    // // set empty item to new dialogue widget
-    // ui->DialogueListContainer->setItemWidget(item, newDialogue);
-
-    // // set the size of the dialogue widget
-    // item->setSizeHint(QSize(250,123));
 }
 
 void WeaverWindow::on_SaveDialogue_clicked()
@@ -81,6 +67,30 @@ void WeaverWindow::on_SaveDialogue_clicked()
 
 void WeaverWindow::on_CreateDialogue(Weaver::DialogueTypes type)
 {
+    if (type == Weaver::DialogueTypes::Dialogue)
+    {
+        // create empty list item
+        auto* item = new QListWidgetItem();
 
+        // create new dialogue widget
+        DialogueContainer* newDialogue = new DialogueContainer(this);
+
+        // add empty item to dialogue list
+        ui->DialogueListContainer->addItem(item);
+
+        // set empty item to new dialogue widget
+        ui->DialogueListContainer->setItemWidget(item, newDialogue);
+
+        // set the size of the dialogue widget
+        item->setSizeHint(QSize(250,123));
+    }
+    else if (type == Weaver::DialogueTypes::Choice)
+    {
+        return;
+    }
+    else if (type == Weaver::DialogueTypes::Reply)
+    {
+        return;
+    }
 }
 
