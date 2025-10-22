@@ -1,7 +1,6 @@
 #include "WeaverWindow.h"
 #include "ui_WeaverWindow.h"
 #include "DialogueContainer.h"
-#include "CharacterCreation.h"
 #include "DialogueManager.h"
 
 WeaverWindow::WeaverWindow(QWidget *parent)
@@ -21,7 +20,7 @@ WeaverWindow::WeaverWindow(QWidget *parent)
         "}"
     );
 
-    SceneID = Weaver::DialogueManager::CreateScene("main");
+    //SceneID = Weaver::DialogueManager::CreateScene("main");
 }
 
 WeaverWindow::~WeaverWindow()
@@ -51,16 +50,8 @@ void WeaverWindow::on_AddDialogue_clicked()
     item->setSizeHint(QSize(250,123));
 }
 
-
-void WeaverWindow::on_AddCharacter_clicked()
-{
-    CharacterCreation* characterCreation = new CharacterCreation();
-    characterCreation->show();
-}
-
-
 void WeaverWindow::on_SaveDialogue_clicked()
 {
-    Weaver::FileIO::SaveDialogueToJSON("Dialogue.json", Weaver::DialogueManager::GetCharacters(), Weaver::DialogueManager::GetScenes());
+    //Weaver::FileIO::SaveDialogueToJSON("Dialogue.json", Weaver::DialogueManager::GetCharacters(), Weaver::DialogueManager::GetScenes());
 }
 

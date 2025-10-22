@@ -22,8 +22,6 @@ public:
 private slots:
     void on_AddDialogue_clicked();
 
-    void on_AddCharacter_clicked();
-
     void on_SaveDialogue_clicked();
 
 private:
