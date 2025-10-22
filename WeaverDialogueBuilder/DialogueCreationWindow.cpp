@@ -22,7 +22,7 @@ void DialogueCreationWindow::on_button_Confirm_clicked()
 
 void DialogueCreationWindow::on_button_Cancel_clicked()
 {
-
+    close();
 }
 
 
