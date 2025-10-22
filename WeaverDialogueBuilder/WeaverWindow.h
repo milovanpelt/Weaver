@@ -6,6 +6,8 @@
 #include <QJsonObject>
 #include <WeaverLibrary.h>
 
+class DialogueCreationWindow;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class WeaverWindow;
@@ -29,5 +31,7 @@ private:
 
     std::string dialogueFile;
     UUIDv4::UUID SceneID;
+
+    DialogueCreationWindow* dialogueCreationWindow = nullptr;
 };
 #endif // WEAVERWINDOW_H

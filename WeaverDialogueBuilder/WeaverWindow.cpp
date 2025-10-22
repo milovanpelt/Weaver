@@ -2,6 +2,7 @@
 #include "ui_WeaverWindow.h"
 #include "DialogueContainer.h"
 #include "DialogueManager.h"
+#include "DialogueCreationWindow.h"
 
 WeaverWindow::WeaverWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,18 +10,18 @@ WeaverWindow::WeaverWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->CurrentSpeaker->setText("NPC");
-    ui->CurrentSpeaker->setStyleSheet
-    (
-        "QLabel {"
-        "   color: black;"
-        "   background-color: white;"
-        "   border: 1px solid black;"
-        "   border-radius: 2px;"
-        "}"
-    );
+    SceneID = Weaver::CreateScene("main");
 
-    //SceneID = Weaver::DialogueManager::CreateScene("main");
+    // ui->CurrentSpeaker->setText("NPC");
+    // ui->CurrentSpeaker->setStyleSheet
+    // (
+    //     "QLabel {"
+    //     "   color: black;"
+    //     "   background-color: white;"
+    //     "   border: 1px solid black;"
+    //     "   border-radius: 2px;"
+    //     "}"
+    // );
 }
 
 WeaverWindow::~WeaverWindow()
@@ -30,20 +31,33 @@ WeaverWindow::~WeaverWindow()
 
 void WeaverWindow::on_AddDialogue_clicked()
 {
-    // create empty list item
-    auto* item = new QListWidgetItem();
+    if (!dialogueCreationWindow)
+    {
+        dialogueCreationWindow = new DialogueCreationWindow(SceneID);
 
-    // create new dialogue widget
-    DialogueContainer* newDialogue = new DialogueContainer(this, SceneID, Weaver::DialogueTypes::Dialogue);
+        dialogueCreationWindow->setAttribute(Qt::WA_DeleteOnClose);
 
-    // add empty item to dialogue list
-    ui->DialogueListContainer->addItem(item);
+        QObject::connect(dialogueCreationWindow, &QObject::destroyed, [this]() {
+            dialogueCreationWindow = nullptr;
+        });
+    }
 
-    // set empty item to new dialogue widget
-    ui->DialogueListContainer->setItemWidget(item, newDialogue);
+    dialogueCreationWindow->show();
 
-    // set the size of the dialogue widget
-    item->setSizeHint(QSize(250,123));
+    // // create empty list item
+    // auto* item = new QListWidgetItem();
+
+    // // create new dialogue widget
+    // DialogueContainer* newDialogue = new DialogueContainer(this, SceneID, Weaver::DialogueTypes::Dialogue);
+
+    // // add empty item to dialogue list
+    // ui->DialogueListContainer->addItem(item);
+
+    // // set empty item to new dialogue widget
+    // ui->DialogueListContainer->setItemWidget(item, newDialogue);
+
+    // // set the size of the dialogue widget
+    // item->setSizeHint(QSize(250,123));
 }
 
 void WeaverWindow::on_SaveDialogue_clicked()
