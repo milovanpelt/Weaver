@@ -13,8 +13,13 @@ DialogueCreationWindow::DialogueCreationWindow(WeaverController* controller, UUI
     characterCreationWindow = new CharacterCreationWindow();
     characterCreationWindow->setAttribute(Qt::WA_DeleteOnClose);
 
+    // signal from character creation window to weaver controller to create character
     QObject::connect(characterCreationWindow, &CharacterCreationWindow::CreateCharacterRequested,
                      controller, &WeaverController::on_CharacterCreatedRequested);
+
+    // signal from dialogue creation window to weaver controller to create dialogue
+    QObject::connect(this, &DialogueCreationWindow::CreateDialogue,
+                     controller, &WeaverController::on_CreateDialogueRequested);
 
     QObject::connect(characterCreationWindow, &QObject::destroyed, [this]() {
         characterCreationWindow = nullptr;
@@ -51,6 +56,9 @@ void DialogueCreationWindow::on_button_Confirm_clicked()
     // 3. get typed dialogue
     // 4. emit DialogueCreationWindow::CreateDialogue(currentSceneID, speakerID, type, dialogue);
 
+    UUIDv4::UUID speakerID = UUIDv4::UUID();
+    emit CreateDialogue(currentSceneID, speakerID, Weaver::DialogueTypes::Dialogue, "cool");
+
     close();
 }
 
@@ -70,7 +78,6 @@ void DialogueCreationWindow::on_button_AddCharacter_clicked()
         characterCreationWindow->setAttribute(Qt::WA_DeleteOnClose);
 
         QObject::connect(characterCreationWindow, &QObject::destroyed, [this]() {
-            qDebug() << "Frame was destroyed";
             characterCreationWindow = nullptr;
         });
     }
