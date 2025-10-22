@@ -6,6 +6,7 @@ DialogueCreationWindow::DialogueCreationWindow(QWidget *parent)
     , ui(new Ui::DialogueCreationWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Add Character");
 }
 
 DialogueCreationWindow::~DialogueCreationWindow()
