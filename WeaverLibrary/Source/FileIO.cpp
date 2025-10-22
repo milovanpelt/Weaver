@@ -17,6 +17,7 @@ namespace Weaver
 	{
         if (characters.size() == 0 || scenes.size() == 0)
         {
+            std::cout << "[FileIO]: no characters or scenes exist" << std::endl;
             return false;
         }
 
@@ -70,9 +71,9 @@ namespace Weaver
 				}
 
 				sceneJson["dialogueOrder"] = dialogueOrderJson;
-
-				weaverJsonData["scenes"].push_back(sceneJson);
             }
+
+            weaverJsonData["scenes"].push_back(sceneJson);
 		}
 
 		std::ofstream output_file(filename);
