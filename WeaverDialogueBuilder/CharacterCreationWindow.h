@@ -20,7 +20,6 @@ private slots:
     void on_CancelButton_clicked();
 
     void on_ConfirmButton_clicked();
-
 private:
     Ui::CharacterCreation *ui;
 };
