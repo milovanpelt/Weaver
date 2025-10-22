@@ -26,6 +26,8 @@ private slots:
     void on_button_Confirm_clicked();
     void on_button_Cancel_clicked();
     void on_button_AddCharacter_clicked();
+private slots:
+    void on_CharacterCreated(const std::string& name);
 };
 
 #endif // DIALOGUECREATIONWINDOW_H

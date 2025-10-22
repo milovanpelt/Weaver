@@ -43,3 +43,8 @@ void DialogueCreationWindow::on_button_AddCharacter_clicked()
     characterCreationWindow->show();
 }
 
+void DialogueCreationWindow::on_CharacterCreated(const std::string& name)
+{
+
+}
+
