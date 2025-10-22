@@ -14,7 +14,8 @@ class CharacterCreationWindow : public QFrame
 public:
     explicit CharacterCreationWindow(QWidget *parent = nullptr);
     ~CharacterCreationWindow();
-
+signals:
+    void CreateCharacterRequested(const std::string& name);
 private slots:
     void on_CancelButton_clicked();
 
