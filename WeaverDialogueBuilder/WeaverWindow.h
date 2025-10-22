@@ -29,7 +29,5 @@ private:
 
     std::string dialogueFile;
     UUIDv4::UUID SceneID;
-private:
-    void on_saveDialogue_clicked();
 };
 #endif // WEAVERWINDOW_H

@@ -28,10 +28,6 @@ WeaverWindow::~WeaverWindow()
     delete ui;
 }
 
-void WeaverWindow::on_saveDialogue_clicked()
-{
-}
-
 void WeaverWindow::on_AddDialogue_clicked()
 {
     // create empty list item
