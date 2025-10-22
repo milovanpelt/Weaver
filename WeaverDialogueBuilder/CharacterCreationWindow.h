@@ -1,5 +1,5 @@
-#ifndef CHARACTERCREATION_H
-#define CHARACTERCREATION_H
+#ifndef CHARACTERCREATIONWINDOW_H
+#define CHARACTERCREATIONWINDOW_H
 
 #include <QFrame>
 
@@ -24,4 +24,4 @@ private:
     Ui::CharacterCreation *ui;
 };
 
-#endif // CHARACTERCREATION_H
+#endif // CHARACTERCREATIONWINDOW_H

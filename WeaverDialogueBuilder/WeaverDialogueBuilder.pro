@@ -8,7 +8,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    CharacterCreation.cpp \
+    CharacterCreationWindow.cpp \
     DialogueContainer.cpp \
     DialogueCreationWindow.cpp \
     WeaverController.cpp \
@@ -18,14 +18,14 @@ SOURCES += \
     ../WeaverLibrary/Source/FileIO.cpp
 
 HEADERS += \
-    CharacterCreation.h \
+    CharacterCreationWindow.h \
     DialogueContainer.h \
     DialogueCreationWindow.h \
     WeaverController.h \
     WeaverWindow.h
 
 FORMS += \
-    CharacterCreation.ui \
+    CharacterCreationWindow.ui \
     DialogueContainer.ui \
     DialogueCreationWindow.ui \
     WeaverWindow.ui

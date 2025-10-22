@@ -1,5 +1,5 @@
-#include "CharacterCreation.h"
-#include "ui_CharacterCreation.h"
+#include "CharacterCreationWindow.h"
+#include "ui_CharacterCreationWindow.h"
 #include "DialogueManager.h"
 
 CharacterCreation::CharacterCreation(QWidget *parent)
@@ -22,7 +22,7 @@ void CharacterCreation::on_CancelButton_clicked()
 void CharacterCreation::on_ConfirmButton_clicked()
 {
     const std::string characterName = ui->NameTextBox->text().toStdString();
-    Weaver::DialogueManager::AddCharacter(characterName);
+    //Weaver::DialogueManager::AddCharacter(characterName);
     close();
 }
 
