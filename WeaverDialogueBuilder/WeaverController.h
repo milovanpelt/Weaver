@@ -12,8 +12,8 @@ public:
     explicit WeaverController(QObject *parent = nullptr);
 signals:
     void CharacterCreated(const std::string& name);
-    void DialogueCreated();
-private slots:
+    void DialogueCreated(Weaver::DialogueTypes type);
+public slots:
     void on_SavingDialogueRequested(const std::string& filename);
     void on_CreateDialogueRequested(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue);
     void on_CharacterCreatedRequested(const std::string& name);
