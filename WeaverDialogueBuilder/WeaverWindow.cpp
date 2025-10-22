@@ -1,7 +1,6 @@
 #include "WeaverWindow.h"
 #include "ui_WeaverWindow.h"
 #include "DialogueContainer.h"
-#include "DialogueManager.h"
 #include "DialogueCreationWindow.h"
 
 WeaverWindow::WeaverWindow(QWidget *parent)
@@ -64,5 +63,10 @@ void WeaverWindow::on_AddDialogue_clicked()
 void WeaverWindow::on_SaveDialogue_clicked()
 {
     emit SavingDialogueRequested(dialogueFile);
+}
+
+void WeaverWindow::on_CreateDialogue(Weaver::DialogueTypes type)
+{
+
 }
 

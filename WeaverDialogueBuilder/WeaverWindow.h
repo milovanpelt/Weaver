@@ -23,6 +23,8 @@ public:
     ~WeaverWindow();
 signals:
     void SavingDialogueRequested(const std::string& filename);
+public slots:
+    void on_CreateDialogue(Weaver::DialogueTypes type);
 private slots:
     void on_AddDialogue_clicked();
 
