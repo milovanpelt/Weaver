@@ -10,6 +10,7 @@ CONFIG += c++17
 SOURCES += \
     CharacterCreation.cpp \
     DialogueContainer.cpp \
+    WeaverController.cpp \
     WeaverWindow.cpp \
     main.cpp \
     ../WeaverLibrary/Source/DialogueManager.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 HEADERS += \
     CharacterCreation.h \
     DialogueContainer.h \
+    WeaverController.h \
     WeaverWindow.h
 
 FORMS += \
