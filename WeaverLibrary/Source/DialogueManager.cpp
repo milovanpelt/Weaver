@@ -1,16 +1,20 @@
 #include "pch.h"
 #include "DialogueManager.h"
 
-namespace Weaver
+namespace Weaver 
 {
 	std::unordered_map<UUIDv4::UUID, Scene> scenes;
+	std::unordered_map<std::string, UUIDv4::UUID> sceneNames;
+
 	std::unordered_map<UUIDv4::UUID, Character> characters;
+	std::unordered_map<std::string, UUIDv4::UUID> charactereNames;
 
-	UUIDv4::UUID CreateID();
-}
+	UUIDv4::UUID CreateID()
+	{
+		UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
+		return uuidGenerator.getUUID();
+	}
 
-namespace Weaver
-{
 	UUIDv4::UUID CreateCharacter(const std::string& newCharacterName)
 	{
 		// No duplicate character names can exist
@@ -24,17 +28,78 @@ namespace Weaver
 			}
 		}
 
-		Character newCharacter;
 		UUIDv4::UUID newCharacterID = CreateID();
+		Character newCharacter{ newCharacterID , newCharacterName };
 
-		newCharacter.id = newCharacterID;
-		newCharacter.name = newCharacterName;
+		characters.try_emplace(newCharacterID , newCharacter);
+		charactereNames.try_emplace(newCharacterName , newCharacterID);
 
-		characters[newCharacterID] = newCharacter;
-
-        std::cout << "[DialogueManager]: Character added: " + newCharacterName + " \n";
+		std::cout << "[DialogueManager]: Character added: " + newCharacterName + " \n";
 
 		return newCharacterID;
+	}
+
+	UUIDv4::UUID CreateScene(const std::string& newSceneName)
+	{
+		// No duplicate scene names can exist
+		for (const auto& scene : scenes)
+		{
+			const std::string& existingSceneName = scene.second.name;
+			if (newSceneName == existingSceneName)
+			{
+				std::cout << "[DialogueManager]: Scene name already exists: " + newSceneName + " \n";
+				return UUIDv4::UUID();
+			}
+		}
+
+		UUIDv4::UUID newSceneID = CreateID();
+		Scene newScene = { newSceneID , newSceneName };
+
+		scenes.try_emplace(newSceneID, newScene);
+		sceneNames.try_emplace(newSceneName, newSceneID);
+
+		return newSceneID;
+	}
+
+	UUIDv4::UUID AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, DialogueTypes type, const std::string& dialogue)
+	{
+		DialogueEntry newDialogueEntry;
+		UUIDv4::UUID newDialogueEntryID = CreateID();
+
+		newDialogueEntry.line = dialogue;
+		newDialogueEntry.speaker_id = speakerID;
+		newDialogueEntry.line_id = newDialogueEntryID;
+		newDialogueEntry.type = type;
+
+		auto sceneIt = scenes.find(sceneID);
+		if (sceneIt != scenes.end())
+		{
+			Scene& scene = sceneIt->second;
+			scene.dialogues[newDialogueEntryID] = newDialogueEntry;
+			scene.dialogueOrder.push_back(newDialogueEntryID);
+		}
+
+		return newDialogueEntryID;
+	}
+
+	void SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID)
+	{
+	}
+
+	void SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
+	{
+		auto sceneIt = scenes.find(sceneID);
+		if (sceneIt != scenes.end())
+		{
+			Scene& scene = sceneIt->second;
+
+			auto dialogueIt = scene.dialogues.find(lineID);
+			if (dialogueIt != scene.dialogues.end())
+			{
+				DialogueEntry& entry = dialogueIt->second;
+				entry.line = text;
+			}
+		}
 	}
 
 	std::vector<std::string> GetCharacterNames()
@@ -55,79 +120,32 @@ namespace Weaver
 		return characters;
 	}
 
-	UUIDv4::UUID CreateScene(const std::string& newSceneName)
-	{
-		// No duplicate scene names can exist
-		for (const auto& scene : scenes)
-		{
-			const std::string& existingSceneName = scene.second.name;
-			if (newSceneName == existingSceneName)
-			{
-				std::cout << "[DialogueManager]: Scene name already exists: " + newSceneName + " \n";
-				return UUIDv4::UUID();
-			}
-		}
-
-		Scene newScene;
-		UUIDv4::UUID newSceneID = CreateID();
-
-		newScene.id = newSceneID;
-		newScene.name = newSceneName;
-
-		scenes[newSceneID] = newScene;
-
-		return newSceneID;
-	}
-
 	std::unordered_map<UUIDv4::UUID, Scene> GetScenes()
 	{
 		return scenes;
 	}
 
-	UUIDv4::UUID Weaver::AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue)
+	UUIDv4::UUID GetSceneID(const std::string& name)
 	{
-		DialogueEntry newDialogueEntry;
-		UUIDv4::UUID newDialogueEntryID = CreateID();
-
-		newDialogueEntry.line = dialogue;
-		newDialogueEntry.speaker_id = speakerID;
-		newDialogueEntry.line_id = newDialogueEntryID;
-		newDialogueEntry.type = type;
-
-		auto sceneIt = scenes.find(sceneID);
-		if (sceneIt != scenes.end())
+		auto sceneIDFound = sceneNames.find(name);
+		if (sceneIDFound == sceneNames.end())
 		{
-			Scene& scene = sceneIt->second;
-			scene.dialogues[newDialogueEntryID] = newDialogueEntry;
-			scene.dialogueOrder.push_back(newDialogueEntryID);
+			return UUIDv4::UUID();
+			std::cout << "[DialogueManager]: Can't find requested name: " << name << std::endl;
 		}
-		
-		return newDialogueEntryID;
+
+		return sceneIDFound->second;
 	}
 
-	void Weaver::SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID)
+	UUIDv4::UUID GetCharacterID(const std::string& name)
 	{
-	}
+		auto characterIDFound = sceneNames.find(name);
+		if (characterIDFound == sceneNames.end())
+		{
+			return UUIDv4::UUID();
+			std::cout << "[DialogueManager]: Can't find requested name: " << name << std::endl;
+		}
 
-	void Weaver::SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
-	{
-        auto sceneIt = scenes.find(sceneID);
-        if (sceneIt != scenes.end())
-        {
-            Scene& scene = sceneIt->second;
-
-			auto dialogueIt = scene.dialogues.find(lineID);
-			if (dialogueIt != scene.dialogues.end())
-			{
-				DialogueEntry& entry = dialogueIt->second;
-				entry.line = text;
-			}
-        }
-	}
-
-	UUIDv4::UUID Weaver::CreateID()
-	{
-		UUIDv4::UUIDGenerator<std::mt19937_64> uuidGenerator;
-		return uuidGenerator.getUUID();
+		return characterIDFound->second;
 	}
 }
