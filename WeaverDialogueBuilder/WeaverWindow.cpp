@@ -27,6 +27,10 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     // signal from weaver window to weaver controller to save dialogue
     QObject::connect(this, &WeaverWindow::SavingDialogueRequested,
                      controller, &WeaverController::on_SavingDialogueRequested);
+
+    // signal from weaver controller to weaver window to create dialogue ui
+    QObject::connect(controller, &WeaverController::DialogueCreated,
+                     this, &WeaverWindow::on_CreateDialogue);
 }
 
 WeaverWindow::~WeaverWindow()
