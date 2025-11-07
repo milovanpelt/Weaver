@@ -69,6 +69,8 @@ void DialogueCreationWindow::on_button_AddCharacter_clicked()
 
 void DialogueCreationWindow::on_CharacterCreated(const std::string& name)
 {
+    const QString& Qname = QString::fromStdString(name);
+    ui->CharacterNames->addItem(Qname);
     std::cout << "[DialogueCreationWindow] Name added: " + name << std::endl;
 }
 
