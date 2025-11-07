@@ -22,6 +22,7 @@ void CharacterCreationWindow::on_ConfirmButton_clicked()
 {
     const std::string characterName = ui->NameTextBox->text().toStdString();
     emit CreateCharacterRequested(characterName);
+    ui->NameTextBox->clear();
     close();
 }
 
