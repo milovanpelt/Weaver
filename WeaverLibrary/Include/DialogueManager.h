@@ -29,8 +29,10 @@ namespace Weaver
 	WEAVERLIBRARY_API std::vector<std::string> GetCharacterNames();
 	WEAVERLIBRARY_API std::unordered_map<UUIDv4::UUID, Character> GetCharacters();
 	WEAVERLIBRARY_API std::unordered_map<UUIDv4::UUID, Scene> GetScenes();
-	WEAVERLIBRARY_API UUIDv4::UUID GetSceneID(const std::string& name);
-	WEAVERLIBRARY_API UUIDv4::UUID GetCharacterID(const std::string& name);
+	WEAVERLIBRARY_API UUIDv4::UUID GetSceneIdFromName(const std::string& name);
+	WEAVERLIBRARY_API UUIDv4::UUID GetCharacterIdFromName(const std::string& name);
+	WEAVERLIBRARY_API const std::string GetSceneNameFromID(const UUIDv4::UUID& id);
+	WEAVERLIBRARY_API const std::string GetCharacterNameFromID(const UUIDv4::UUID& id);
 
 }
 
