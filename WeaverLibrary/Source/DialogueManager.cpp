@@ -79,6 +79,8 @@ namespace Weaver
 			scene.dialogueOrder.push_back(newDialogueEntryID);
 		}
 
+		std::cout << "[DialogueManager]: Dialogue created in data" << std::endl;
+
 		return newDialogueEntryID;
 	}
 

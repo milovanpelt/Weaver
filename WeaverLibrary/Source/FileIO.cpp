@@ -82,7 +82,8 @@ namespace Weaver
             std::cout << filename << " could not be opened" << std::endl;
 			return false;
 		}
-		
+
+        std::cout << "[FileIO] Saved dialogue data to: " << filename << std::endl;
 		output_file << weaverJsonData.dump(2);
 		output_file.close();
 
