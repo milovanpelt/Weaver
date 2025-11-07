@@ -4,10 +4,12 @@
 namespace Weaver 
 {
 	std::unordered_map<UUIDv4::UUID, Scene> scenes;
-	std::unordered_map<std::string, UUIDv4::UUID> sceneNames;
+	std::unordered_map<std::string, UUIDv4::UUID> sceneIDs;
+	std::unordered_map<UUIDv4::UUID, std::string> sceneNames;
 
 	std::unordered_map<UUIDv4::UUID, Character> characters;
-	std::unordered_map<std::string, UUIDv4::UUID> charactereNames;
+	std::unordered_map<std::string, UUIDv4::UUID> characterIDs;
+	std::unordered_map<UUIDv4::UUID, std::string> characterNames;
 
 	UUIDv4::UUID CreateID()
 	{
@@ -32,7 +34,7 @@ namespace Weaver
 		Character newCharacter{ newCharacterID , newCharacterName };
 
 		characters.try_emplace(newCharacterID , newCharacter);
-		charactereNames.try_emplace(newCharacterName , newCharacterID);
+		characterIDs.try_emplace(newCharacterName , newCharacterID);
 
 		std::cout << "[DialogueManager]: Character added: " + newCharacterName + " \n";
 
@@ -56,7 +58,7 @@ namespace Weaver
 		Scene newScene = { newSceneID , newSceneName };
 
 		scenes.try_emplace(newSceneID, newScene);
-		sceneNames.try_emplace(newSceneName, newSceneID);
+		sceneIDs.try_emplace(newSceneName, newSceneID);
 
 		return newSceneID;
 	}
@@ -129,8 +131,8 @@ namespace Weaver
 
 	UUIDv4::UUID GetSceneIdFromName(const std::string& name)
 	{
-		auto sceneIDFound = sceneNames.find(name);
-		if (sceneIDFound == sceneNames.end())
+		auto sceneIDFound = sceneIDs.find(name);
+		if (sceneIDFound == sceneIDs.end())
 		{
 			return UUIDv4::UUID();
 			std::cout << "[DialogueManager]: Can't find requested name: " << name << std::endl;
@@ -141,13 +143,37 @@ namespace Weaver
 
 	UUIDv4::UUID GetCharacterIdFromName(const std::string& name)
 	{
-		auto characterIDFound = sceneNames.find(name);
-		if (characterIDFound == sceneNames.end())
+		auto characterIDFound = characterIDs.find(name);
+		if (characterIDFound == characterIDs.end())
 		{
 			return UUIDv4::UUID();
 			std::cout << "[DialogueManager]: Can't find requested name: " << name << std::endl;
 		}
 
 		return characterIDFound->second;
+	}
+
+	WEAVERLIBRARY_API const std::string GetSceneNameFromID(const UUIDv4::UUID& id)
+	{
+		auto sceneNameFound = sceneNames.find(id);
+		if (sceneNameFound == sceneNames.end())
+		{
+			return "";
+			std::cout << "[DialogueManager]: Can't find requested name" << std::endl;
+		}
+
+		return sceneNameFound->second;
+	}
+
+	WEAVERLIBRARY_API const std::string GetCharacterNameFromID(const UUIDv4::UUID& id)
+	{
+		auto characterNameFound = characterNames.find(id);
+		if (characterNameFound == characterNames.end())
+		{
+			return "";
+			std::cout << "[DialogueManager]: Can't find requested name" << std::endl;
+		}
+
+		return characterNameFound->second;
 	}
 }
