@@ -127,7 +127,7 @@ namespace Weaver
 		return scenes;
 	}
 
-	UUIDv4::UUID GetSceneID(const std::string& name)
+	UUIDv4::UUID GetSceneIdFromName(const std::string& name)
 	{
 		auto sceneIDFound = sceneNames.find(name);
 		if (sceneIDFound == sceneNames.end())
@@ -139,7 +139,7 @@ namespace Weaver
 		return sceneIDFound->second;
 	}
 
-	UUIDv4::UUID GetCharacterID(const std::string& name)
+	UUIDv4::UUID GetCharacterIdFromName(const std::string& name)
 	{
 		auto characterIDFound = sceneNames.find(name);
 		if (characterIDFound == sceneNames.end())
