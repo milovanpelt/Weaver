@@ -35,6 +35,7 @@ namespace Weaver
 
 		characters.try_emplace(newCharacterID , newCharacter);
 		characterIDs.try_emplace(newCharacterName , newCharacterID);
+        characterNames.try_emplace(newCharacterID, newCharacterName);
 
 		std::cout << "[DialogueManager]: Character added: " + newCharacterName + " \n";
 
@@ -59,6 +60,7 @@ namespace Weaver
 
 		scenes.try_emplace(newSceneID, newScene);
 		sceneIDs.try_emplace(newSceneName, newSceneID);
+        sceneNames.try_emplace(newSceneID, newSceneName);
 
 		return newSceneID;
 	}
