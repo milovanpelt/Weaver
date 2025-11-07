@@ -57,7 +57,7 @@ void DialogueCreationWindow::on_button_Confirm_clicked()
         dialogueType = Weaver::DialogueTypes::Reply;
     }
 
-    UUIDv4::UUID selectecCharacterID = Weaver::GetCharacterID(selectedCharacterName);
+    UUIDv4::UUID selectecCharacterID = Weaver::GetCharacterIdFromName(selectedCharacterName);
     emit CreateDialogue(currentSceneID, selectecCharacterID, dialogueType, currentDialogue);
 
     ui->DialogueText->clear();

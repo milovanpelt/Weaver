@@ -12,7 +12,7 @@ class DialogueContainer : public QFrame
     Q_OBJECT
 
 public:
-    explicit DialogueContainer(QWidget *parent = nullptr);
+    explicit DialogueContainer(const std::string& characterName, const std::string& dialogue, QWidget *parent = nullptr);
     ~DialogueContainer();
 private:
     Ui::DialogueContainer *ui;

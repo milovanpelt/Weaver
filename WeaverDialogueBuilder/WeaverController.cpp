@@ -15,7 +15,7 @@ void WeaverController::on_CreateDialogueRequested(UUIDv4::UUID sceneID, UUIDv4::
 {
     std::cout << "[Weaver Controller]: Dialogue Creation Requested" << std::endl;
     Weaver::AddDialogueToCharacter(sceneID, speakerID, type, dialogue);
-    emit WeaverController::DialogueCreated(type);
+    emit WeaverController::DialogueCreated(speakerID, type, dialogue);
 }
 
 void WeaverController::on_CharacterCreatedRequested(const std::string& name)

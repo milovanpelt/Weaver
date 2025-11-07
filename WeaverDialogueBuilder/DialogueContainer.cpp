@@ -1,7 +1,8 @@
 #include "DialogueContainer.h"
 #include "ui_DialogueContainer.h"
+#include "DialogueManager.h"
 
-DialogueContainer::DialogueContainer(QWidget *parent)
+DialogueContainer::DialogueContainer(const std::string& characterName, const std::string& dialogue, QWidget *parent)
     : QFrame(parent)
     , ui(new Ui::DialogueContainer)
 {
@@ -20,14 +21,23 @@ DialogueContainer::DialogueContainer(QWidget *parent)
         "}"
     );
 
+    ui->CharacterList->clear();
 
-    //     ui->CharacterList->clear();
+    for (int i = 0; i < Weaver::GetCharacterNames().size(); i++)
+    {
+        QString character = QString::fromStdString(Weaver::GetCharacterNames()[i]);
+        ui->CharacterList->addItem(character);
+    }
 
-    //     for (int i = 0; i < Weaver::DialogueManager::GetCharacterNames().size(); i++)
-    //     {
-    //         QString character = QString::fromStdString(Weaver::DialogueManager::GetCharacterNames()[i]);
-    //         ui->CharacterList->addItem(character);
-    //     }
+    const QString QcharacterName = QString::fromStdString(characterName);
+
+    int index = ui->CharacterList->findText(QcharacterName);
+    if (index != -1)
+    {
+        ui->CharacterList->setCurrentIndex(index);
+    }
+
+    ui->DialogueTextBox->setPlainText(QString::fromStdString(dialogue));
 }
 
 DialogueContainer::~DialogueContainer()

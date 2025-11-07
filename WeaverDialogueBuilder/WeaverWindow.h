@@ -25,7 +25,7 @@ public:
 signals:
     void SavingDialogueRequested(const std::string& filename);
 public slots:
-    void on_CreateDialogue(Weaver::DialogueTypes type);
+    void on_CreateDialogue(UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue);
 private slots:
     void on_AddDialogue_clicked();
 

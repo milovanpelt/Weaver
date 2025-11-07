@@ -65,7 +65,7 @@ void WeaverWindow::on_SaveDialogue_clicked()
     emit SavingDialogueRequested(dialogueFile);
 }
 
-void WeaverWindow::on_CreateDialogue(Weaver::DialogueTypes type)
+void WeaverWindow::on_CreateDialogue(UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue)
 {
     if (type == Weaver::DialogueTypes::Dialogue)
     {
@@ -74,8 +74,10 @@ void WeaverWindow::on_CreateDialogue(Weaver::DialogueTypes type)
         // create empty list item
         auto* item = new QListWidgetItem();
 
+        const std::string characterName = Weaver::GetCharacterNameFromID(speakerID);
+
         // create new dialogue widget
-        DialogueContainer* newDialogue = new DialogueContainer(this);
+        DialogueContainer* newDialogue = new DialogueContainer(characterName, dialogue, this);
 
         // add empty item to dialogue list
         ui->DialogueListContainer->addItem(item);
