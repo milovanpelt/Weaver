@@ -19,6 +19,10 @@ DialogueCreationWindow::DialogueCreationWindow(WeaverController* controller, UUI
     // signal from dialogue creation window to weaver controller to create dialogue
     QObject::connect(this, &DialogueCreationWindow::CreateDialogue,
                      controller, &WeaverController::on_CreateDialogueRequested);
+
+    ui->DialogueTypes->addItem("Dialogue");
+    ui->DialogueTypes->addItem("Choice");
+    ui->DialogueTypes->addItem("Reply");
 }
 
 DialogueCreationWindow::~DialogueCreationWindow()
@@ -28,13 +32,33 @@ DialogueCreationWindow::~DialogueCreationWindow()
 
 void DialogueCreationWindow::on_button_Confirm_clicked()
 {
-    // 1. get character name and its id
-    // 2. get dialogue type
-    // 3. get typed dialogue
-    // 4. emit DialogueCreationWindow::CreateDialogue(currentSceneID, speakerID, type, dialogue);
+    const std::string selectedCharacterName = ui->CharacterNames->currentText().toStdString();
+    const std::string selectedDialogueType = ui->DialogueTypes->currentText().toStdString();
+    const std::string currentDialogue = ui->DialogueText->toPlainText().toStdString();
 
-    UUIDv4::UUID speakerID = UUIDv4::UUID();
-    emit CreateDialogue(currentSceneID, speakerID, Weaver::DialogueTypes::Dialogue, "cool");
+    // Dialogue can only be created if a character is created and selected
+    if (selectedCharacterName == "")
+    {
+        std::cout << "[DialogueCreationWindow] No name created" << std::endl;
+        return;
+    }
+
+    Weaver::DialogueTypes dialogueType;
+    if (selectedDialogueType == "Dialogue")
+    {
+        dialogueType = Weaver::DialogueTypes::Dialogue;
+    }
+    if (selectedDialogueType == "Choice")
+    {
+        dialogueType = Weaver::DialogueTypes::Choice;
+    }
+    if (selectedDialogueType == "Reply")
+    {
+        dialogueType = Weaver::DialogueTypes::Reply;
+    }
+
+    UUIDv4::UUID selectecCharacterID = Weaver::GetCharacterID(selectedCharacterName);
+    emit CreateDialogue(currentSceneID, selectecCharacterID, dialogueType, currentDialogue);
 
     close();
 }
