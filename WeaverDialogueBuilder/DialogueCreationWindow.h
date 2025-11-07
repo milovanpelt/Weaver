@@ -18,7 +18,6 @@ class DialogueCreationWindow : public QFrame
 
 public:
     explicit DialogueCreationWindow(WeaverController* controller, UUIDv4::UUID SceneID, QWidget *parent = nullptr);
-    explicit DialogueCreationWindow(UUIDv4::UUID SceneID, QWidget *parent = nullptr);
     ~DialogueCreationWindow();
 signals:
     void CreateDialogue(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue);

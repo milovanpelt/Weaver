@@ -48,7 +48,7 @@ void WeaverWindow::on_AddDialogue_clicked()
 {
     if (!dialogueCreationWindow)
     {
-        dialogueCreationWindow = new DialogueCreationWindow(SceneID);
+        dialogueCreationWindow = new DialogueCreationWindow(controller, SceneID);
 
         dialogueCreationWindow->setAttribute(Qt::WA_DeleteOnClose);
 
@@ -69,6 +69,8 @@ void WeaverWindow::on_CreateDialogue(Weaver::DialogueTypes type)
 {
     if (type == Weaver::DialogueTypes::Dialogue)
     {
+        std::cout << "[Weaver Window]: Dialogue Container created with type: 'Dialogue'" << std::endl;
+
         // create empty list item
         auto* item = new QListWidgetItem();
 

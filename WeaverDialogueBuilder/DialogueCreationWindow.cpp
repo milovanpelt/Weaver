@@ -26,24 +26,6 @@ DialogueCreationWindow::DialogueCreationWindow(WeaverController* controller, UUI
     });
 }
 
-DialogueCreationWindow::DialogueCreationWindow(UUIDv4::UUID SceneID, QWidget *parent)
-    : QFrame(parent)
-    , ui(new Ui::DialogueCreationWindow)
-{
-    ui->setupUi(this);
-    this->setWindowTitle("Add Character");
-
-    currentSceneID = SceneID;
-    characterCreationWindow = new CharacterCreationWindow();
-    characterCreationWindow->setAttribute(Qt::WA_DeleteOnClose);
-
-    QObject::connect(characterCreationWindow, &QObject::destroyed, [this]() {
-        characterCreationWindow = nullptr;
-    });
-}
-
-
-
 DialogueCreationWindow::~DialogueCreationWindow()
 {
     delete ui;
@@ -87,6 +69,6 @@ void DialogueCreationWindow::on_button_AddCharacter_clicked()
 
 void DialogueCreationWindow::on_CharacterCreated(const std::string& name)
 {
-    std::cout << "[QT - DialogueCreationWindow] Name added: " + name << std::endl;
+    std::cout << "[DialogueCreationWindow] Name added: " + name << std::endl;
 }
 
