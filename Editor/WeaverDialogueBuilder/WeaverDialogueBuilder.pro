@@ -14,8 +14,8 @@ SOURCES += \
     WeaverController.cpp \
     WeaverWindow.cpp \
     main.cpp \
-    ../WeaverLibrary/Source/DialogueManager.cpp \
-    ../WeaverLibrary/Source/FileIO.cpp
+    ../../Core/WeaverLibrary/Source/DialogueManager.cpp \
+    ../../Core/WeaverLibrary/Source/FileIO.cpp
 
 HEADERS += \
     CharacterCreationWindow.h \
@@ -35,16 +35,16 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../WeaverLibrary/x64/release/ -lWeaverLibrary
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../WeaverLibrary/x64/debug/ -lWeaverLibrary
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../Core/WeaverLibrary/x64/release/ -lWeaverLibrary
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../Core/WeaverLibrary/x64/debug/ -lWeaverLibrary
 
 CONFIG += precompile_header
-PRECOMPILED_HEADER = $$PWD/../WeaverLibrary/pch.h
+PRECOMPILED_HEADER = $$PWD/../../Core/WeaverLibrary/pch.h
 
-INCLUDEPATH += $$PWD/../WeaverLibrary
-INCLUDEPATH += $$PWD/../WeaverLibrary/Include
-INCLUDEPATH += $$PWD/../WeaverLibrary/External/JSON/nlohmann
-INCLUDEPATH += $$PWD/../WeaverLibrary/External/UUID
+INCLUDEPATH += $$PWD/../../Core/WeaverLibrary
+INCLUDEPATH += $$PWD/../../Core/WeaverLibrary/Include
+INCLUDEPATH += $$PWD/../../Core/WeaverLibrary/External/JSON/nlohmann
+INCLUDEPATH += $$PWD/../../Core/WeaverLibrary/External/UUID
 
 DEPENDPATH += $$INCLUDEPATH
 
