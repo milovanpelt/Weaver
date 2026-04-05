@@ -28,7 +28,7 @@
      <x>20</x>
      <y>10</y>
      <width>361</width>
-     <height>91</height>
+     <height>231</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -81,7 +81,7 @@
     <item>
      <widget class="QPlainTextEdit" name="DialogueTextBox">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>

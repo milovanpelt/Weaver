@@ -8,20 +8,26 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    CharacterCreation.cpp \
+    CharacterCreationWindow.cpp \
     DialogueContainer.cpp \
+    DialogueCreationWindow.cpp \
+    WeaverController.cpp \
     WeaverWindow.cpp \
     main.cpp \
+    ../WeaverLibrary/Source/DialogueManager.cpp \
     ../WeaverLibrary/Source/FileIO.cpp
 
 HEADERS += \
-    CharacterCreation.h \
+    CharacterCreationWindow.h \
     DialogueContainer.h \
+    DialogueCreationWindow.h \
+    WeaverController.h \
     WeaverWindow.h
 
 FORMS += \
-    CharacterCreation.ui \
+    CharacterCreationWindow.ui \
     DialogueContainer.ui \
+    DialogueCreationWindow.ui \
     WeaverWindow.ui
 
 # Default rules for deployment.
@@ -38,6 +44,7 @@ PRECOMPILED_HEADER = $$PWD/../WeaverLibrary/pch.h
 INCLUDEPATH += $$PWD/../WeaverLibrary
 INCLUDEPATH += $$PWD/../WeaverLibrary/Include
 INCLUDEPATH += $$PWD/../WeaverLibrary/External/JSON/nlohmann
+INCLUDEPATH += $$PWD/../WeaverLibrary/External/UUID
 
 DEPENDPATH += $$INCLUDEPATH
 

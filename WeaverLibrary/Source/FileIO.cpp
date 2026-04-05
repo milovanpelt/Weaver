@@ -23,6 +23,7 @@ namespace Weaver
 
         nlohmann::json weaverJsonData = nlohmann::json::object();
 
+        // Create characters
 		for (const auto& character : characters)
 		{
 			std::string stringedCharacterID = character.second.id.str();
@@ -33,6 +34,7 @@ namespace Weaver
 			});
 		}
 
+        // Create scene
 		for (const auto& scene : scenes)
 		{
 			std::string stringedSceneID = scene.second.id.str();
@@ -42,6 +44,7 @@ namespace Weaver
             sceneJson["id"] = stringedSceneID;
             sceneJson["name"] = sceneName;
 
+            // Create dialogue and dialogueOrder within Scene
             nlohmann::json dialogueJson = nlohmann::json::array();
 			nlohmann::json dialogueOrderJson = nlohmann::json::array();
 
@@ -76,6 +79,7 @@ namespace Weaver
             weaverJsonData["scenes"].push_back(sceneJson);
 		}
 
+        // Save data to JSON
 		std::ofstream output_file(filename);
 		if (!output_file.is_open())
 		{

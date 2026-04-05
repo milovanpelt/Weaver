@@ -84,9 +84,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="AddCharacter">
+        <widget class="QPushButton" name="SaveDialogue">
          <property name="text">
-          <string>Add Character</string>
+          <string>Save Dialogue</string>
          </property>
         </widget>
        </item>

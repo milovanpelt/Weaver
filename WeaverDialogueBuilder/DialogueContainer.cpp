@@ -1,41 +1,43 @@
 #include "DialogueContainer.h"
 #include "ui_DialogueContainer.h"
+#include "DialogueManager.h"
 
-DialogueContainer::DialogueContainer(QWidget *parent, QString type)
+DialogueContainer::DialogueContainer(const std::string& characterName, const std::string& dialogue, QWidget *parent)
     : QFrame(parent)
     , ui(new Ui::DialogueContainer)
 {
     ui->setupUi(this);
 
-    int testItemAmount = 35;
-    for (int i = 0; i < testItemAmount; i++)
+    ui->DialogueTextBox->setStyleSheet
+    (
+        "QPlainTextEdit {"
+        "   color: black;"
+        "   background-color: white;"
+        "   border: 1px solid gray;"
+        "   border-radius: 4px;"
+        "}"
+        "QPlainTextEdit:placeholder {"
+        "   color: lightgray;"
+        "}"
+    );
+
+    ui->CharacterList->clear();
+
+    for (int i = 0; i < Weaver::GetCharacterNames().size(); i++)
     {
-        ui->CharacterList->addItem(QString::number(i) + "- Character Name");
+        QString character = QString::fromStdString(Weaver::GetCharacterNames()[i]);
+        ui->CharacterList->addItem(character);
     }
 
-    if (type == "dialogue")
+    const QString QcharacterName = QString::fromStdString(characterName);
+
+    int index = ui->CharacterList->findText(QcharacterName);
+    if (index != -1)
     {
-        ui->DialogueTextBox->setStyleSheet
-        (
-            "QPlainTextEdit {"
-            "   color: black;"
-            "   background-color: white;"
-            "   border: 1px solid gray;"
-            "   border-radius: 4px;"
-            "}"
-            "QPlainTextEdit:placeholder {"
-            "   color: lightgray;"
-            "}"
-        );
+        ui->CharacterList->setCurrentIndex(index);
     }
-    else if (type == "choice")
-    {
-        return;
-    }
-    else if (type == "reply")
-    {
-        return;
-    }
+
+    ui->DialogueTextBox->setPlainText(QString::fromStdString(dialogue));
 }
 
 DialogueContainer::~DialogueContainer()

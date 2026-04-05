@@ -5,6 +5,9 @@
 #include <fileio.h>
 #include <QJsonObject>
 #include <WeaverLibrary.h>
+#include "WeaverController.h"
+
+class DialogueCreationWindow;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,16 +22,22 @@ class WeaverWindow : public QMainWindow
 public:
     WeaverWindow(QWidget *parent = nullptr);
     ~WeaverWindow();
+signals:
+    void SavingDialogueRequested(const std::string& filename);
+public slots:
+    void on_CreateDialogue(UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue);
 private slots:
     void on_AddDialogue_clicked();
 
-    void on_AddCharacter_clicked();
+    void on_SaveDialogue_clicked();
 
 private:
     Ui::WeaverWindow *ui;
 
     std::string dialogueFile;
-private:
-    void on_saveDialogue_clicked();
+    UUIDv4::UUID SceneID;
+
+    DialogueCreationWindow* dialogueCreationWindow = nullptr;
+    WeaverController* controller;
 };
 #endif // WEAVERWINDOW_H
