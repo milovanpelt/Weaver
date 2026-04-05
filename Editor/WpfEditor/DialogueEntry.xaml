@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="WpfEditor.DialogueEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfEditor"
+             mc:Ignorable="d" 
+             d:DesignHeight="130" d:DesignWidth="400">
+    <StackPanel Orientation="Vertical"  Background="#2D2D2D" >
+        <StackPanel Orientation="Horizontal">
+            <Ellipse Name="DialoguePortrait" Width="48" Height="48" Margin="1 1 1 1">
+                <Ellipse.Fill>
+                    <ImageBrush Stretch="UniformToFill" ImageSource="/WpfEditor;component/Assets/rachel-denton-merchantface.jpg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <ComboBox Margin="10" Width="144" Height="20">
+                <ComboBoxItem>Harry Potter</ComboBoxItem>
+                <ComboBoxItem>Hagrid</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <TextBox Name="DialogueText" SpellCheck.IsEnabled="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" />
+    </StackPanel>
+</UserControl>
