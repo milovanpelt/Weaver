@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WeaverLibraryDemo.cpp">
+    <ClCompile Include="StoryStackLibraryDemo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
