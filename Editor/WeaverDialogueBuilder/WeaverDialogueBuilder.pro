@@ -11,41 +11,41 @@ SOURCES += \
     CharacterCreationWindow.cpp \
     DialogueContainer.cpp \
     DialogueCreationWindow.cpp \
-    WeaverController.cpp \
-    WeaverWindow.cpp \
+    StoryStackController.cpp \
+    StoryStackWindow.cpp \
     main.cpp \
-    ../../Core/WeaverLibrary/Source/DialogueManager.cpp \
-    ../../Core/WeaverLibrary/Source/FileIO.cpp
+    ../../Core/StoryStackLibrary/Source/DialogueManager.cpp \
+    ../../Core/StoryStackLibrary/Source/FileIO.cpp
 
 HEADERS += \
     CharacterCreationWindow.h \
     DialogueContainer.h \
     DialogueCreationWindow.h \
-    WeaverController.h \
-    WeaverWindow.h
+    StoryStackController.h \
+    StoryStackWindow.h
 
 FORMS += \
     CharacterCreationWindow.ui \
     DialogueContainer.ui \
     DialogueCreationWindow.ui \
-    WeaverWindow.ui
+    StoryStackWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../Core/WeaverLibrary/x64/release/ -lWeaverLibrary
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../Core/WeaverLibrary/x64/debug/ -lWeaverLibrary
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../Core/StoryStackLibrary/x64/release/ -lStoryStackLibrary
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../Core/StoryStackLibrary/x64/debug/ -lStoryStackLibrary
 
 CONFIG += precompile_header
-PRECOMPILED_HEADER = $$PWD/../../Core/WeaverLibrary/pch.h
+PRECOMPILED_HEADER = $$PWD/../../Core/StoryStackLibrary/pch.h
 
-INCLUDEPATH += $$PWD/../../Core/WeaverLibrary
-INCLUDEPATH += $$PWD/../../Core/WeaverLibrary/Include
-INCLUDEPATH += $$PWD/../../Core/WeaverLibrary/External/JSON/nlohmann
-INCLUDEPATH += $$PWD/../../Core/WeaverLibrary/External/UUID
+INCLUDEPATH += $$PWD/../../Core/StoryStackLibrary
+INCLUDEPATH += $$PWD/../../Core/StoryStackLibrary/Include
+INCLUDEPATH += $$PWD/../../Core/StoryStackLibrary/External/JSON/nlohmann
+INCLUDEPATH += $$PWD/../../Core/StoryStackLibrary/External/UUID
 
 DEPENDPATH += $$INCLUDEPATH
 
-DEFINES += WEAVERLIBRARY_EXPORTS
+DEFINES += STORYSTACKLIBRARY_EXPORTS

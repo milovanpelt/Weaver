@@ -1,7 +1,7 @@
 #include "DialogueCreationWindow.h"
 #include "ui_DialogueCreationWindow.h"
 
-DialogueCreationWindow::DialogueCreationWindow(WeaverController* controller, UUIDv4::UUID SceneID, QWidget *parent)
+DialogueCreationWindow::DialogueCreationWindow(StoryStackController* controller, UUIDv4::UUID SceneID, QWidget *parent)
     : QFrame(parent)
     , ui(new Ui::DialogueCreationWindow)
 {
@@ -9,16 +9,16 @@ DialogueCreationWindow::DialogueCreationWindow(WeaverController* controller, UUI
     this->setWindowTitle("Add Character");
 
     currentSceneID = SceneID;
-    weaverController = controller;
+    storyStackController = controller;
     characterCreationWindow = new CharacterCreationWindow();
 
     // signal from character creation window to weaver controller to create character
     QObject::connect(characterCreationWindow, &CharacterCreationWindow::CreateCharacterRequested,
-                     controller, &WeaverController::on_CharacterCreatedRequested);
+                     controller, &StoryStackController::on_CharacterCreatedRequested);
 
     // signal from dialogue creation window to weaver controller to create dialogue
     QObject::connect(this, &DialogueCreationWindow::CreateDialogue,
-                     controller, &WeaverController::on_CreateDialogueRequested);
+                     controller, &StoryStackController::on_CreateDialogueRequested);
 
     ui->DialogueTypes->addItem("Dialogue");
     ui->DialogueTypes->addItem("Choice");
@@ -43,21 +43,21 @@ void DialogueCreationWindow::on_button_Confirm_clicked()
         return;
     }
 
-    Weaver::DialogueTypes dialogueType;
+    StoryStack::DialogueTypes dialogueType;
     if (selectedDialogueType == "Dialogue")
     {
-        dialogueType = Weaver::DialogueTypes::Dialogue;
+        dialogueType = StoryStack::DialogueTypes::Dialogue;
     }
     if (selectedDialogueType == "Choice")
     {
-        dialogueType = Weaver::DialogueTypes::Choice;
+        dialogueType = StoryStack::DialogueTypes::Choice;
     }
     if (selectedDialogueType == "Reply")
     {
-        dialogueType = Weaver::DialogueTypes::Reply;
+        dialogueType = StoryStack::DialogueTypes::Reply;
     }
 
-    UUIDv4::UUID selectecCharacterID = Weaver::GetCharacterIdFromName(selectedCharacterName);
+    UUIDv4::UUID selectecCharacterID = StoryStack::GetCharacterIdFromName(selectedCharacterName);
     emit CreateDialogue(currentSceneID, selectecCharacterID, dialogueType, currentDialogue);
 
     ui->DialogueText->clear();

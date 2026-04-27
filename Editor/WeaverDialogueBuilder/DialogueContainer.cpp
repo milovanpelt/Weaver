@@ -23,9 +23,9 @@ DialogueContainer::DialogueContainer(const std::string& characterName, const std
 
     ui->CharacterList->clear();
 
-    for (int i = 0; i < Weaver::GetCharacterNames().size(); i++)
+    for (int i = 0; i < StoryStack::GetCharacterNames().size(); i++)
     {
-        QString character = QString::fromStdString(Weaver::GetCharacterNames()[i]);
+        QString character = QString::fromStdString(StoryStack::GetCharacterNames()[i]);
         ui->CharacterList->addItem(character);
     }
 
