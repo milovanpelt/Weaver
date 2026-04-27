@@ -3,13 +3,13 @@
 #include <fstream>
 #include "json.hpp"
 
-namespace Weaver
+namespace StoryStack
 {
-	Weaver::FileIO::FileIO()
+	FileIO::FileIO()
 	{
 	}
 
-	Weaver::FileIO::~FileIO()
+	FileIO::~FileIO()
 	{
 	}
 
@@ -21,14 +21,14 @@ namespace Weaver
             return false;
         }
 
-        nlohmann::json weaverJsonData = nlohmann::json::object();
+        nlohmann::json storyStackJsonData = nlohmann::json::object();
 
         // Create characters
 		for (const auto& character : characters)
 		{
 			std::string stringedCharacterID = character.second.id.str();
 			std::string characterName = character.second.name;
-			weaverJsonData["characters"].push_back({
+			storyStackJsonData["characters"].push_back({
 				{ "id", stringedCharacterID },
 				{ "name", characterName }
 			});
@@ -76,7 +76,7 @@ namespace Weaver
 				sceneJson["dialogueOrder"] = dialogueOrderJson;
             }
 
-            weaverJsonData["scenes"].push_back(sceneJson);
+			storyStackJsonData["scenes"].push_back(sceneJson);
 		}
 
         // Save data to JSON
@@ -88,7 +88,7 @@ namespace Weaver
 		}
 
         std::cout << "[FileIO] Saved dialogue data to: " << filename << std::endl;
-		output_file << weaverJsonData.dump(2);
+		output_file << storyStackJsonData.dump(2);
 		output_file.close();
 
 		return true;

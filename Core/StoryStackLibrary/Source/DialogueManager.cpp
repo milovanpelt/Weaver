@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "DialogueManager.h"
 
-namespace Weaver 
+namespace StoryStack
 {
 	std::unordered_map<UUIDv4::UUID, Scene> scenes;
 	std::unordered_map<std::string, UUIDv4::UUID> sceneIDs;
@@ -155,7 +155,7 @@ namespace Weaver
 		return characterIDFound->second;
 	}
 
-	WEAVERLIBRARY_API std::string GetSceneNameFromID(const UUIDv4::UUID& id)
+	STORYSTACKLIBRARY_API std::string GetSceneNameFromID(const UUIDv4::UUID& id)
 	{
 		auto sceneNameFound = sceneNames.find(id);
 		if (sceneNameFound == sceneNames.end())
@@ -167,7 +167,7 @@ namespace Weaver
 		return sceneNameFound->second;
 	}
 
-	WEAVERLIBRARY_API std::string GetCharacterNameFromID(const UUIDv4::UUID& id)
+	STORYSTACKLIBRARY_API std::string GetCharacterNameFromID(const UUIDv4::UUID& id)
 	{
 		auto characterNameFound = characterNames.find(id);
 		if (characterNameFound == characterNames.end())
