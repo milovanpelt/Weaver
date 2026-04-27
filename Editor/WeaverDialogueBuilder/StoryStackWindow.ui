@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WeaverWindow</class>
- <widget class="QMainWindow" name="WeaverWindow">
+ <class>StoryStackWindow</class>
+ <widget class="QMainWindow" name="StoryStackWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

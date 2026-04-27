@@ -1,17 +1,17 @@
-#include "WeaverWindow.h"
-#include "ui_WeaverWindow.h"
+#include "StoryStackWindow.h"
+#include "ui_StoryStackWindow.h"
 #include "DialogueContainer.h"
 #include "DialogueCreationWindow.h"
 
-WeaverWindow::WeaverWindow(QWidget *parent)
+StoryStackWindow::StoryStackWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::WeaverWindow)
+    , ui(new Ui::StoryStackWindow)
 {
     ui->setupUi(this);
-    controller = new WeaverController(this);
+    controller = new StoryStackController(this);
 
-    SceneID = Weaver::CreateScene("main");
-    dialogueFile = "WeaverDialogue.json";
+    SceneID = StoryStack::CreateScene("main");
+    dialogueFile = "StoryStackDialogue.json";
     dialogueCreationWindow = new DialogueCreationWindow(controller, SceneID);
 
     // ui->CurrentSpeaker->setText("NPC");
@@ -25,26 +25,26 @@ WeaverWindow::WeaverWindow(QWidget *parent)
     //     "}"
     // );
 
-    // signal from weaver window to weaver controller to save dialogue
-    QObject::connect(this, &WeaverWindow::SavingDialogueRequested,
-                     controller, &WeaverController::on_SavingDialogueRequested);
+    // signal from storystack window to storystack controller to save dialogue
+    QObject::connect(this, &StoryStackWindow::SavingDialogueRequested,
+                     controller, &StoryStackController::on_SavingDialogueRequested);
 
-    // signal from weaver controller to weaver window to create dialogue ui
-    QObject::connect(controller, &WeaverController::DialogueCreated,
-                     this, &WeaverWindow::on_CreateDialogue);
+    // signal from storystack controller to storystack window to create dialogue ui
+    QObject::connect(controller, &StoryStackController::DialogueCreated,
+                     this, &StoryStackWindow::on_CreateDialogue);
 
-    // signal from weaver controller to dialogue creation window  to update character list
-    QObject::connect(controller, &WeaverController::CharacterCreated,
+    // signal from storystack controller to dialogue creation window  to update character list
+    QObject::connect(controller, &StoryStackController::CharacterCreated,
                      dialogueCreationWindow, &DialogueCreationWindow::on_CharacterCreated);
 
 }
 
-WeaverWindow::~WeaverWindow()
+StoryStackWindow::~StoryStackWindow()
 {
     delete ui;
 }
 
-void WeaverWindow::on_AddDialogue_clicked()
+void StoryStackWindow::on_AddDialogue_clicked()
 {
     if (!dialogueCreationWindow)
     {
@@ -60,21 +60,21 @@ void WeaverWindow::on_AddDialogue_clicked()
     dialogueCreationWindow->show();
 }
 
-void WeaverWindow::on_SaveDialogue_clicked()
+void StoryStackWindow::on_SaveDialogue_clicked()
 {
     emit SavingDialogueRequested(dialogueFile);
 }
 
-void WeaverWindow::on_CreateDialogue(UUIDv4::UUID speakerID, Weaver::DialogueTypes type, const std::string& dialogue)
+void StoryStackWindow::on_CreateDialogue(UUIDv4::UUID speakerID, StoryStack::DialogueTypes type, const std::string& dialogue)
 {
-    if (type == Weaver::DialogueTypes::Dialogue)
+    if (type == StoryStack::DialogueTypes::Dialogue)
     {
-        std::cout << "[Weaver Window]: Dialogue Container created with type: 'Dialogue'" << std::endl;
+        std::cout << "[StoryStack Window]: Dialogue Container created with type: 'Dialogue'" << std::endl;
 
         // create empty list item
         auto* item = new QListWidgetItem();
 
-        const std::string characterName = Weaver::GetCharacterNameFromID(speakerID);
+        const std::string characterName = StoryStack::GetCharacterNameFromID(speakerID);
 
         // create new dialogue widget
         DialogueContainer* newDialogue = new DialogueContainer(characterName, dialogue, this);
@@ -88,11 +88,11 @@ void WeaverWindow::on_CreateDialogue(UUIDv4::UUID speakerID, Weaver::DialogueTyp
         // set the size of the dialogue widget
         item->setSizeHint(QSize(250,123));
     }
-    else if (type == Weaver::DialogueTypes::Choice)
+    else if (type == StoryStack::DialogueTypes::Choice)
     {
         return;
     }
-    else if (type == Weaver::DialogueTypes::Reply)
+    else if (type == StoryStack::DialogueTypes::Reply)
     {
         return;
     }

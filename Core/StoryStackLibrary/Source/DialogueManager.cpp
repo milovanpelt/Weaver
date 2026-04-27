@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "DialogueManager.h"
 
-namespace Weaver 
+namespace StoryStack
 {
 	std::unordered_map<UUIDv4::UUID, Scene> scenes;
 	std::unordered_map<std::string, UUIDv4::UUID> sceneIDs;
@@ -65,7 +65,7 @@ namespace Weaver
 		return newSceneID;
 	}
 
-	UUIDv4::UUID AddDialogueToCharacter(UUIDv4::UUID sceneID, UUIDv4::UUID speakerID, DialogueTypes type, const std::string& dialogue)
+	UUIDv4::UUID AddDialogueToCharacter(const UUIDv4::UUID& sceneID, const UUIDv4::UUID& speakerID, DialogueTypes type, const std::string& dialogue)
 	{
 		DialogueEntry newDialogueEntry;
 		UUIDv4::UUID newDialogueEntryID = CreateID();
@@ -88,11 +88,11 @@ namespace Weaver
 		return newDialogueEntryID;
 	}
 
-	void SetSpeaker(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, UUIDv4::UUID speakerID)
+	void SetSpeaker(const UUIDv4::UUID& sceneID, const UUIDv4::UUID& lineID, const UUIDv4::UUID speakerID)
 	{
 	}
 
-	void SetLineText(UUIDv4::UUID sceneID, UUIDv4::UUID lineID, const std::string& text)
+	void SetLineText(const UUIDv4::UUID& sceneID, const UUIDv4::UUID& lineID, const std::string& text)
 	{
 		auto sceneIt = scenes.find(sceneID);
 		if (sceneIt != scenes.end())
@@ -121,12 +121,12 @@ namespace Weaver
 		return characterNames;
 	}
 
-	std::unordered_map<UUIDv4::UUID, Character> GetCharacters()
+	const std::unordered_map<UUIDv4::UUID, Character>& GetCharacters()
 	{
 		return characters;
 	}
 
-	std::unordered_map<UUIDv4::UUID, Scene> GetScenes()
+	const std::unordered_map<UUIDv4::UUID, Scene>& GetScenes()
 	{
 		return scenes;
 	}
@@ -155,7 +155,7 @@ namespace Weaver
 		return characterIDFound->second;
 	}
 
-	WEAVERLIBRARY_API const std::string GetSceneNameFromID(const UUIDv4::UUID& id)
+	STORYSTACKLIBRARY_API std::string GetSceneNameFromID(const UUIDv4::UUID& id)
 	{
 		auto sceneNameFound = sceneNames.find(id);
 		if (sceneNameFound == sceneNames.end())
@@ -167,7 +167,7 @@ namespace Weaver
 		return sceneNameFound->second;
 	}
 
-	WEAVERLIBRARY_API const std::string GetCharacterNameFromID(const UUIDv4::UUID& id)
+	STORYSTACKLIBRARY_API std::string GetCharacterNameFromID(const UUIDv4::UUID& id)
 	{
 		auto characterNameFound = characterNames.find(id);
 		if (characterNameFound == characterNames.end())

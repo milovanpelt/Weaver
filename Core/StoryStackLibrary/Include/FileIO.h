@@ -4,21 +4,21 @@
 #define FILEIO_H
 
 #ifdef _WIN32
-#ifdef WEAVERLIBRARY_EXPORTS
-#define WEAVERLIBRARY_API __declspec(dllexport)
+#ifdef STORYSTACKLIBRARY_EXPORTS
+#define STORYSTACKLIBRARY_API __declspec(dllexport)
 #else
-#define WEAVERLIBRARY_API __declspec(dllimport)
+#define STORYSTACKLIBRARY_API __declspec(dllimport)
 #endif
 #else
-#define WEAVERLIBRARY_API
+#define STORYSTACKLIBRARY_API
 #endif
 
 #include "Scene.h"
 #include "Character.h"
 
-namespace Weaver
+namespace StoryStack
 {
-	class WEAVERLIBRARY_API FileIO
+	class STORYSTACKLIBRARY_API FileIO
 	{
 	public:
 		FileIO();
