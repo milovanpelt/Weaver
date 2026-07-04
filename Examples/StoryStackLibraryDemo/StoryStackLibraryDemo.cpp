@@ -3,6 +3,7 @@
 
 #include "StoryStackLibrary.h"
 #include <iostream>
+
 int main()
 {
     std::cout << "StoryStack Library Demo!\n\n";
@@ -12,8 +13,9 @@ int main()
     auto minevra = StoryStack::CreateCharacter("Minerva");
 
     // Create scene
-    auto scene_boyWhoLived = StoryStack::CreateScene("The Boy who lived");
+    auto scene_boyWhoLived = StoryStack::CreateScene("The Boy Who Lived");
 
     // Create dialogues
     StoryStack::AddDialogueToCharacter(scene_boyWhoLived, albus, StoryStack::DialogueTypes::Dialogue, "Hello Professor");
+    StoryStack::AddDialogueToCharacter(scene_boyWhoLived, minevra, StoryStack::DialogueTypes::Dialogue, "Good Evening");
 }
